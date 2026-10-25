@@ -61,21 +61,13 @@
     </ul>
 
     <div class="nav-actions">
-      <!-- Iron Man Easter Egg Callout Banner -->
-      <button type="button" class="easter-egg-indicator trigger-jarvis-hud" title="Click to launch Stark Jarvis HUD!">
-        <span class="ironman-mask-icon">
-          <!-- Iron Man Helmet SVG -->
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
-            <path d="M4 8.5C4 4.5 7.5 2 12 2s8 2.5 8 6.5c0 3.5-.8 7-2 10.5-.6 1.8-2 3-3.8 3h-4.4c-1.8 0-3.2-1.2-3.8-3C4.8 15.5 4 12 4 8.5z" fill="#dc2626" stroke="#991b1b" stroke-width="1"/>
-            <path d="M7 9c.5-3 2.5-4.5 5-4.5s4.5 1.5 5 4.5c0 3.5-.5 6-1.5 8-.5 1-1.5 1.5-2.5 1.5h-2c-1 0-2-.5-2.5-1.5-1-2-1.5-4.5-1.5-8z" fill="#fbbf24" stroke="#d97706" stroke-width="0.8"/>
-            <rect x="8" y="10" width="2.8" height="1.2" rx="0.4" fill="#00f0ff" filter="drop-shadow(0 0 2px #00f0ff)"/>
-            <rect x="13.2" y="10" width="2.8" height="1.2" rx="0.4" fill="#00f0ff" filter="drop-shadow(0 0 2px #00f0ff)"/>
-          </svg>
-        </span>
-        <span>Easter egg here!</span>
-        <span class="easter-egg-arrow">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
+      <!-- Interactive Like Counter in Ribbon -->
+      <button type="button" class="btn-nav-like like-trigger-btn" title="Love this portfolio? Hit Like!">
+        <svg class="like-heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>Like</span>
+        <span class="like-count-num">142</span>
       </button>
 
       <button type="button" class="btn-easter-egg trigger-jarvis-hud" title="Launch Jarvis Arc Reactor HUD">
@@ -105,118 +97,81 @@
 
   <main>
     <!-- ==========================================================================
-         HERO SECTION (SCROLLYTELLING & DYNAMIC TELEMETRY)
+         HERO SECTION (SCROLLYTELLING & DYNAMIC TELEMETRY - SPATIOUS CENTERED LAYOUT)
          ========================================================================== -->
-    <section id="hero" class="hero-section">
-      <div class="container">
-        <div class="hero-grid">
-          
-          <div class="hero-content reveal">
-            <div class="hero-announcement">
-              <div class="pill-badge active-indicator">
-                <span class="live-dot"></span>
-                <span>Reporting & Analytics Intern @ VOLVO Group</span>
-              </div>
+    <section id="hero" class="hero-section hero-spacious">
+      <div class="container hero-container-centered">
+        
+        <!-- Photo Centered on Top (No floating bubbles, spacious and clean) -->
+        <div class="hero-avatar-center reveal">
+          <div class="hero-avatar-ring">
+            <div class="hero-avatar-inner">
+              <img src="assets/Sarathy.jpeg" alt="Sarathy Bhaskaran - AI & Data Science Engineer" />
             </div>
-
-            <!-- Full Name Prominently Featured -->
-            <h1 class="hero-title">
-              Sarathy <span class="gradient-cyan">Bhaskaran</span>
-            </h1>
-
-            <!-- User Subheading -->
-            <p class="hero-tagline" style="font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; color: #fff; border-left: 3px solid var(--accent-cyan); padding-left: 14px; margin: 4px 0;">
-              "No backup plan. I was in the field before AI bloomed. Now I'm here to make life better with it."
-            </p>
-
-            <p class="hero-subtitle">
-              Integrated M.Tech in <strong>CSE (Data Science) @ VIT Vellore (CGPA: 9.06)</strong>. Published Indian Patent holder (#202641051630), Riviera '26 Organizer, and NSS Publicity Head building high-performance AI architectures and scalable real-world data systems.
-            </p>
-
-            <div class="hero-actions">
-              <a href="#projects" class="btn btn-glow">
-                <span>Explore Projects</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="#contact" class="btn btn-secondary">
-                <span>Get in Touch</span>
-              </a>
-              <!-- Interactive Like Button -->
-              <button type="button" class="btn-like like-trigger-btn" title="Hit like if you enjoy the portfolio!">
-                <svg class="like-heart-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                <span>Like</span>
-                <span class="like-count-num">142</span>
-              </button>
-            </div>
-
-            <div class="hero-socials">
-              <a href="https://github.com/SARATHYB" target="_blank" rel="noopener noreferrer" class="hero-social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                <span>GitHub</span>
-              </a>
-              <a href="https://www.linkedin.com/in/sarathy-bhaskaran" target="_blank" rel="noopener noreferrer" class="hero-social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                <span>LinkedIn</span>
-              </a>
-              <span class="pill-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <span>Hosur / Vellore, India</span>
-              </span>
-            </div>
+            <div class="hero-avatar-glow"></div>
           </div>
-
-          <!-- Hero Visual with Interactive Telemetry Badges -->
-          <div class="hero-visual-wrapper reveal reveal-delay-2">
-            <div class="hero-visual-card interactive-card">
-              <div class="avatar-image-container">
-                <img src="assets/Sarathy.jpeg" alt="Sarathy Bhaskaran - AI & Data Science Engineer" />
-                <div class="avatar-glow-overlay"></div>
-              </div>
-            </div>
-
-            <!-- Pro Telemetry Pills (Clean SVG Icons) -->
-            <div class="floating-telemetry telemetry-1">
-              <div class="telemetry-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              </div>
-              <div>
-                <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Academic Distinction</div>
-                <div>9.06 CGPA @ VIT Vellore</div>
-              </div>
-            </div>
-
-            <div class="floating-telemetry telemetry-2">
-              <div class="telemetry-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-              </div>
-              <div>
-                <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Indian Patent Published</div>
-                <div>No. 202641051630 A</div>
-              </div>
-            </div>
-
-            <div class="floating-telemetry telemetry-3">
-              <div class="telemetry-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-              </div>
-              <div>
-                <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Global Fleet Analytics</div>
-                <div>Volvo Group Intern</div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Hero Metrics Strip (Updated with Blood camps, NSS camp, Riviera organizer) -->
+        <!-- Role Announcement Badge -->
+        <div class="hero-announcement reveal reveal-delay-1">
+          <div class="pill-badge active-indicator">
+            <span class="live-dot"></span>
+            <span>Reporting &amp; Analytics Intern @ VOLVO Group</span>
+          </div>
+        </div>
+
+        <!-- Full Name in a Single Line (No wrapping) -->
+        <h1 class="hero-title hero-title-centered reveal reveal-delay-1">
+          Sarathy <span class="gradient-cyan">Bhaskaran</span>
+        </h1>
+
+        <p class="hero-role-subtitle reveal reveal-delay-2">
+          Integrated M.Tech (CSE - Data Science) @ VIT Vellore · AI/ML Systems &amp; Analytics
+        </p>
+
+        <!-- User Quote -->
+        <blockquote class="hero-quote-block reveal reveal-delay-2">
+          "Don't ever let someone tell you, you can't do something. Not even me. You got a dream, you got to protect it!"
+        </blockquote>
+
+        <div class="hero-actions hero-actions-centered reveal reveal-delay-3">
+          <a href="#projects" class="btn btn-glow">
+            <span>Explore Projects</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Get in Touch</span>
+          </a>
+        </div>
+
+        <div class="hero-socials hero-socials-centered reveal reveal-delay-3">
+          <a href="https://github.com/SARATHYB" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/sarathy-bhaskaran" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <span>LinkedIn</span>
+          </a>
+          <span class="pill-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Hosur / Vellore, India</span>
+          </span>
+        </div>
+
+        <!-- Hero Metrics Strip (With CGPA Included) -->
         <div class="hero-metrics-strip reveal reveal-delay-3">
           <div class="metric-item">
-            <div class="metric-value gradient-cyan">1</div>
+            <div class="metric-value gradient-cyan">9.06</div>
+            <div class="metric-label">CGPA @ VIT Vellore</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value gradient-gold">1</div>
             <div class="metric-label">Indian Patent Published</div>
           </div>
           <div class="metric-item">
             <div class="metric-value gradient-text">3+</div>
-            <div class="metric-label">Corporate & Research Internships</div>
+            <div class="metric-label">Corporate &amp; Research Internships</div>
           </div>
           <div class="metric-item">
             <div class="metric-value gradient-rose" style="color: #fb7185;">3+</div>
@@ -227,7 +182,7 @@
             <div class="metric-label">NSS Special Camps Led</div>
           </div>
           <div class="metric-item">
-            <div class="metric-value gradient-gold">1×</div>
+            <div class="metric-value gradient-purple">1×</div>
             <div class="metric-label">Riviera '26 Organizer (200+ Events)</div>
           </div>
         </div>
@@ -236,65 +191,69 @@
     </section>
 
     <!-- ==========================================================================
-         ABOUT ME SECTION (REVAMPED: AUTHENTIC, LIVELY & IMPACT-DRIVEN)
+         ABOUT ME SECTION (AUTHENTIC NARRATIVE & PHILOSOPHY)
          ========================================================================== -->
-    <section id="about">
+    <section id="about" class="about-section">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-tag">// ABOUT SARATHY</div>
-          <h2 class="section-title">Code, High Energy & The Drive to Make Life Better</h2>
+          <div class="section-tag">// MY JOURNEY &amp; PHILOSOPHY</div>
+          <h2 class="section-title">I Was Meant to Write My Own Story</h2>
           <p class="section-description">
-            I don't wait for technologies to trend before diving in. I explore, build, and lead with 100% conviction.
+            The path chosen, the doubts conquered, and the conviction driving every line of code and leadership initiative.
           </p>
         </div>
 
-        <div class="dual-columns reveal reveal-delay-1">
-          <div class="column-card interactive-card">
-            <div class="column-card-title">
-              <span class="gradient-cyan">The Story Behind the Screen</span>
-            </div>
-            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
-              Before generative AI was dominating every headline, I was already fascinated by data structures, statistical modeling, and teaching machines how to make sense of chaos. I hold <strong>no backup plan</strong> because building software and intelligent data systems isn't just a career pathway for me—it is what I genuinely love doing.
+        <div class="about-story-container reveal reveal-delay-1">
+          <div class="about-story-card interactive-card">
+            <h3 class="about-story-heading gradient-cyan">I Was Meant to Write My Own Story.</h3>
+            
+            <p>
+              There was a time when everyone expected me to crack NEET, secure an MBBS seat, and become a doctor. But I chose a different path. I chose Engineering. I chose Data Science, even before AI began transforming the world.
             </p>
-            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
-              Currently, I translate massive procurement and purchasing telemetry into strategic decisions at <strong>Volvo Group</strong>, having previously built enterprise BERT RAG and Vision-Language Model pipelines at <strong>TVS Motor Company</strong> and published a patent in edge model distillation.
+
+            <p>
+              For years, I questioned my decision. <em>What if I failed? What if I had chosen the wrong path?</em> But every time doubt knocked on my door, I reminded myself:
             </p>
-          </div>
 
-          <div class="column-card interactive-card">
-            <div class="column-card-title">
-              <span class="gradient-purple">Beyond the Codebase</span>
+            <div class="about-mantra-box">
+              <span class="mantra-step">I WILL.</span>
+              <span class="mantra-divider">·</span>
+              <span class="mantra-step">I SHOULD.</span>
+              <span class="mantra-divider">·</span>
+              <span class="mantra-step mantra-highlight">I MUST SUCCEED.</span>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 14px;">
-              <div style="display: flex; gap: 14px; align-items: flex-start;">
-                <div style="background: rgba(0, 240, 255, 0.1); color: var(--accent-cyan); padding: 8px 12px; border-radius: var(--radius-sm); font-weight: 700;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                </div>
-                <div>
-                  <h4 style="font-size: 1rem; margin-bottom: 2px;">Campus & Social Impact</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Publicity Head at NSS VIT organizing hospital blood donation drives and 7-day special camps; Riviera '26 Organizer monitoring 200+ events.</p>
-                </div>
-              </div>
 
-              <div style="display: flex; gap: 14px; align-items: flex-start;">
-                <div style="background: rgba(168, 85, 247, 0.1); color: var(--accent-purple); padding: 8px 12px; border-radius: var(--radius-sm); font-weight: 700;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                </div>
-                <div>
-                  <h4 style="font-size: 1rem; margin-bottom: 2px;">Audacious Innovation</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Deeply inspired by Dr. APJ Abdul Kalam, Tony Stark, and Elon Musk: engineering bold solutions designed specifically for the betterment of humanity.</p>
-                </div>
-              </div>
+            <p>
+              Today, I don't fear AI replacing jobs. I believe in using AI to empower humanity. Technology should not replace our purpose; it should help us fulfil it.
+            </p>
 
-              <div style="display: flex; gap: 14px; align-items: flex-start;">
-                <div style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald); padding: 8px 12px; border-radius: var(--radius-sm); font-weight: 700;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
-                </div>
-                <div>
-                  <h4 style="font-size: 1rem; margin-bottom: 2px;">Relentless Fuel</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Powered by long highway cycling rides, anime hype (AOT, Solo Leveling), timeless cinema, and late-night coding playlists.</p>
-                </div>
-              </div>
+            <p>
+              And if you think I am lucky, remember the journey behind the milestones — from writing my school public examinations during COVID-19 to earning a place at VIT Vellore, pursuing a degree I believe in, and stepping into the professional world through an internship amid an ever-evolving job market.
+            </p>
+
+            <p>
+              Beyond academics, my journey has taken me from volunteering at Riviera and Gravitas to taking on leadership and organiser-level responsibilities. Through NSS, I grew from helping with crowd control to becoming Publicity Head and organising special camps. I also contributed to more than three blood donation camps, coordinating with 8+ hospitals and helping mobilise over 1,000 student blood donors.
+            </p>
+
+            <div class="about-figma-callout">
+              <a href="#projects" class="btn-figma-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>
+                <span>For Figma this is the link — View UI/UX Prototypes ↗</span>
+              </a>
+            </div>
+
+            <p>
+              But the greatest rewards weren't just the titles or achievements. They were the people I met, the lives we touched, and the lessons that shaped me.
+            </p>
+
+            <p>
+              I haven't discovered my ultimate purpose yet, but I know I am here to build, lead, create, and contribute to something bigger than myself.
+            </p>
+
+            <div class="about-creed-box">
+              <div class="creed-phrase gradient-gold">Becoming the man. Building the myth. Writing the legend.</div>
+              <p class="creed-sub">My story is still being written. My purpose is still unfolding.</p>
+              <div class="creed-finale gradient-cyan">And the best chapters are yet to come.</div>
             </div>
           </div>
         </div>
@@ -562,326 +521,480 @@
     </section>
 
     <!-- ==========================================================================
-         FEATURED PROJECTS & DESIGN SHOWCASE
+         FEATURED PROJECTS & DESIGN SHOWCASE (3D STACKED CARDS INFINITE CAROUSEL)
          ========================================================================== -->
     <section id="projects">
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-tag">// PRODUCTION CODE & DESIGN</div>
-          <h2 class="section-title">Engineered Projects & Design Prototypes</h2>
+          <div class="section-tag">// PRODUCTION CODE &amp; DESIGN</div>
+          <h2 class="section-title">Engineered Projects &amp; Design Prototypes</h2>
           <p class="section-description">
-            Distributed streaming architectures, Stark AI assistants, BI analytics dashboards, medical vision models, and Figma/Canva UI/UX prototypes.
+            Cycle through distributed streaming architectures, Stark AI assistants, BI analytics dashboards, and interactive UI/UX prototypes.
           </p>
         </div>
 
         <!-- Filter Bar -->
         <div class="filter-bar reveal">
           <button type="button" class="filter-btn active" data-filter="all">All Projects</button>
-          <button type="button" class="filter-btn" data-filter="ai-ml">AI & GenAI</button>
-          <button type="button" class="filter-btn" data-filter="bi-analytics">BI & Analytics</button>
-          <button type="button" class="filter-btn" data-filter="streaming">Streaming & Distributed</button>
-          <button type="button" class="filter-btn" data-filter="healthcare">Healthcare & Vision</button>
-          <button type="button" class="filter-btn" data-filter="ui-ux">UI/UX & Design</button>
+          <button type="button" class="filter-btn" data-filter="ai-ml">AI &amp; GenAI</button>
+          <button type="button" class="filter-btn" data-filter="bi-analytics">BI &amp; Analytics</button>
+          <button type="button" class="filter-btn" data-filter="streaming">Streaming &amp; Distributed</button>
+          <button type="button" class="filter-btn" data-filter="healthcare">Healthcare &amp; Vision</button>
+          <button type="button" class="filter-btn" data-filter="ui-ux">UI/UX &amp; Design</button>
         </div>
 
-        <div class="projects-grid">
+        <!-- 3D Stacked Cards Carousel Stage -->
+        <div class="projects-stack-wrapper reveal">
+          <button class="stack-nav-btn prev" aria-label="Previous Project Card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
 
-          <!-- 1. HeyJarvis: Stark-Inspired AI Assistant (NEW PROJECT WITH PROPER GITHUB LINK) -->
-          <div class="project-card interactive-card reveal" data-category="ai-ml">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">GenAI & Stark Industries Telemetry</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/HeyJarvis" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <div class="projects-stack-stage" id="projects-stack-stage">
+
+            <!-- Card 1: HeyJarvis -->
+            <div class="project-stack-card" data-category="ai-ml">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">GENAI &amp; STARK TELEMETRY</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/HeyJarvis" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">HeyJarvis: Autonomous AI Voice &amp; Desktop Assistant</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Wake-word speech recognition engine with low-latency TTS synthesis</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>LLM context reasoning driving automated multi-step desktop workflows</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Interactive Stark Industries Arc Reactor HUD telemetry diagnostics</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Native OS hardware control, application launch, and system automation</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/HeyJarvis" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Repository</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
-              </div>
 
-              <h3 class="project-title">HeyJarvis: Autonomous AI Voice & Desktop Assistant</h3>
-              <p class="project-desc">
-                An intelligent personal assistant built as an homage to Iron Man's J.A.R.V.I.S. Integrates low-latency voice command recognition, LLM-powered context understanding, real-time desktop automation, and Stark Arc Reactor HUD telemetry diagnostics.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Wake-word speech recognition engine with responsive TTS synthesis.</li>
-                <li>LLM context reasoning driving automated multi-step desktop workflows.</li>
-                <li>Interactive Stark Industries Arc Reactor HUD telemetry modal interface.</li>
-              </ul>
-            </div>
-
-            <div class="project-footer">
-              <span class="tag-pill">Python</span>
-              <span class="tag-pill">SpeechRecognition</span>
-              <span class="tag-pill">LLMs</span>
-              <span class="tag-pill">Automation</span>
-              <span class="tag-pill">Stark HUD</span>
-              <span class="tag-pill">PyAudio</span>
-            </div>
-          </div>
-
-          <!-- 2. Smart Email Prioritization Engine (RENAMED FROM HEYJARVIS, DUMMY/PRIVATE LINK) -->
-          <div class="project-card interactive-card reveal reveal-delay-1" data-category="streaming ai-ml">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Distributed Streaming & Microservices</span>
-                <div class="project-links">
-                  <span class="pill-badge" style="font-size: 0.72rem; padding: 2px 8px; border-color: rgba(255, 255, 255, 0.15); color: var(--text-dim);" title="Internal Enterprise Architecture">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    Internal Architecture
-                  </span>
+                <div class="stack-card-tags">
+                  <span class="tag-pill">Python</span>
+                  <span class="tag-pill">SpeechRecognition</span>
+                  <span class="tag-pill">LLMs</span>
+                  <span class="tag-pill">Stark HUD</span>
                 </div>
               </div>
-
-              <h3 class="project-title">Smart Email Prioritization System</h3>
-              <p class="project-desc">
-                High-throughput distributed workflow engineered to ingest, process, classify, and intelligently triage emails in real-time. Features automated Gmail API hooks, Redis caching, and zero-latency triage microservices.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Gmail API real-time event streaming via Apache Kafka topics.</li>
-                <li>Spark Structured Streaming with Redis low-latency caching layer.</li>
-                <li>Delta Lake storage layer with Dockerized microservices.</li>
-              </ul>
             </div>
 
-            <div class="project-footer">
-              <span class="tag-pill">Apache Kafka</span>
-              <span class="tag-pill">Spark Streaming</span>
-              <span class="tag-pill">Delta Lake</span>
-              <span class="tag-pill">Redis</span>
-              <span class="tag-pill">Docker</span>
-              <span class="tag-pill">Python ML</span>
-            </div>
-          </div>
+            <!-- Card 2: Smart Email Prioritization System -->
+            <div class="project-stack-card" data-category="streaming ai-ml">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">DISTRIBUTED STREAMING &amp; KAFKA</div>
+                  <div class="stack-card-links">
+                    <span class="pill-badge" style="font-size: 0.7rem; padding: 2px 7px;">Internal Arch</span>
+                  </div>
+                </div>
 
-          <!-- 3. Consumer Smartphone Buying Behaviour Analytics (NEW GITHUB REPO ADDED) -->
-          <div class="project-card interactive-card reveal reveal-delay-2" data-category="bi-analytics ai-ml">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">BI Analytics & Looker Studio</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/Consumer-Buying-Behaviour-Analytics/" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <h3 class="stack-card-title">Smart Email Prioritization System</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Gmail API real-time event streaming via high-throughput Kafka topics</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Spark Structured Streaming with Redis low-latency caching layer</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Delta Lake ACID storage layer with containerized Docker microservices</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Zero-latency NLP email triage and priority sentiment classification</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="#contact" class="btn btn-glow stack-btn">
+                    <span>Discuss Architecture</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
-              </div>
 
-              <h3 class="project-title">Consumer Smartphone Buying Behaviour Analytics</h3>
-              <p class="project-desc">
-                Comprehensive Business Intelligence and Machine Learning framework examining smartphone consumer purchase decisions, feature sensitivity, platform loyalty, and brand perception trends.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Interactive Google Looker Studio dashboard visualizing key survey KPIs and trends.</li>
-                <li>K-Means Unsupervised Clustering segmenting high-propensity consumer archetypes.</li>
-                <li>Random Forest Classification modeling platform preference tendencies.</li>
-                <li>NLP Sentiment Analysis on consumer survey feedback corpora.</li>
-              </ul>
-            </div>
-
-            <div class="project-footer">
-              <span class="tag-pill">Looker Studio</span>
-              <span class="tag-pill">K-Means</span>
-              <span class="tag-pill">Random Forest</span>
-              <span class="tag-pill">NLP Sentiment</span>
-              <span class="tag-pill">Python</span>
-              <span class="tag-pill">EDA</span>
-            </div>
-          </div>
-
-          <!-- 4. Procrastinate Figma UI/UX Project (NEW FIGMA PROJECT) -->
-          <div class="project-card interactive-card reveal" data-category="ui-ux">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">UI/UX Design · Figma Interactive Prototype</span>
-                <div class="project-links">
-                  <span class="pill-badge" style="font-size: 0.72rem; padding: 2px 8px; border-color: rgba(168, 85, 247, 0.3); color: #c084fc;">Figma UI/UX</span>
+                <div class="stack-card-tags">
+                  <span class="tag-pill">Apache Kafka</span>
+                  <span class="tag-pill">Spark Streaming</span>
+                  <span class="tag-pill">Delta Lake</span>
+                  <span class="tag-pill">Docker</span>
                 </div>
               </div>
-
-              <h3 class="project-title">Procrastinate: Gamified Anti-Procrastination Flow</h3>
-              <p class="project-desc">
-                Full-fidelity mobile and web application design crafted in Figma. Solves executive dysfunction and chronic task avoidance through micro-habit decomposition, adaptive dopamine timers, and minimalist dark interfaces.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Interactive micro-task breakout flow with frictionless onboarding journeys.</li>
-                <li>Apple Human Interface Guideline-inspired dark mode component design system.</li>
-                <li>Gamified sprint rewards pacing psychological resistance and cognitive load.</li>
-              </ul>
             </div>
 
-            <div class="project-footer">
-              <span class="tag-pill">Figma</span>
-              <span class="tag-pill">UI/UX Prototyping</span>
-              <span class="tag-pill">Design Systems</span>
-              <span class="tag-pill">Micro-Interactions</span>
-              <span class="tag-pill">Wireframing</span>
-            </div>
-          </div>
-
-          <!-- 5. Canva Projects & Creative Branding (NEW CANVA PROJECT) -->
-          <div class="project-card interactive-card reveal reveal-delay-1" data-category="ui-ux">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Visual Branding & Campaign Design</span>
-                <div class="project-links">
-                  <span class="pill-badge" style="font-size: 0.72rem; padding: 2px 8px; border-color: rgba(0, 240, 255, 0.3); color: var(--accent-cyan);">Canva Creative</span>
+            <!-- Card 3: Consumer Smartphone Buying Behaviour Analytics -->
+            <div class="project-stack-card" data-category="bi-analytics ai-ml">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">BI ANALYTICS &amp; LOOKER STUDIO</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/Consumer-Buying-Behaviour-Analytics/" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-              <h3 class="project-title">Canva Creative Campaigns & Event Brand Visuals</h3>
-              <p class="project-desc">
-                Visual identity and promotional media suite crafted for Asia's massive cultural fest Riviera '26, NSS Blood Donation awareness drives, and collegiate technical conferences.
-              </p>
+                <h3 class="stack-card-title">Consumer Smartphone Buying Behaviour Analytics</h3>
 
-              <ul class="project-highlights">
-                <li>High-impact promotional poster sets and stage LED backdrop designs.</li>
-                <li>Informational awareness campaigns for POCSO Act and Vigilance Awareness Week.</li>
-                <li>Social media carousels and brand guidelines maintaining consistent typography.</li>
-              </ul>
-            </div>
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Interactive Google Looker Studio dashboard visualizing key survey KPIs</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>K-Means Unsupervised Clustering segmenting consumer archetypes</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Random Forest Classification modeling platform brand loyalty tendencies</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>NLP Sentiment Analysis on consumer qualitative feedback corpora</span>
+                  </li>
+                </ul>
 
-            <div class="project-footer">
-              <span class="tag-pill">Canva Pro</span>
-              <span class="tag-pill">Event Branding</span>
-              <span class="tag-pill">Digital Posters</span>
-              <span class="tag-pill">Social Campaigns</span>
-              <span class="tag-pill">Visual Identity</span>
-            </div>
-          </div>
-
-          <!-- 6. Retinal Disease Diagnosis -->
-          <div class="project-card interactive-card reveal reveal-delay-2" data-category="ai-ml healthcare">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Medical Deep Learning · Clinical Precision</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/Eye-Disease-Classification" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/Consumer-Buying-Behaviour-Analytics/" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>View Repository &amp; BI Dashboard</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
-              </div>
 
-              <h3 class="project-title">Deep Learning-Based Retinal Disease Diagnosis</h3>
-              <p class="project-desc">
-                Multi-architecture CNN ensemble system classifying complex ocular retinal pathologies with clinical diagnostic precision, integrating robust image augmentation and attention-guided models.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Ensemble of ResNet101, ConvNeXt-Tiny, and InceptionV3 architectures.</li>
-                <li>Automated preprocessing pipeline handling illumination artifacts & noise.</li>
-                <li>Validated across clinical diagnostic benchmarks for glaucoma and retinopathy.</li>
-              </ul>
-            </div>
-
-            <div class="project-footer">
-              <span class="tag-pill">ResNet101</span>
-              <span class="tag-pill">ConvNeXt</span>
-              <span class="tag-pill">InceptionV3</span>
-              <span class="tag-pill">TensorFlow</span>
-              <span class="tag-pill">Medical Vision</span>
-            </div>
-          </div>
-
-          <!-- 7. ServeCrypt -->
-          <div class="project-card interactive-card reveal" data-category="streaming">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Cryptography & Infrastructure</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/ServeCrypt" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  </a>
+                <div class="stack-card-tags">
+                  <span class="tag-pill">Looker Studio</span>
+                  <span class="tag-pill">K-Means</span>
+                  <span class="tag-pill">Random Forest</span>
+                  <span class="tag-pill">Python EDA</span>
                 </div>
               </div>
-
-              <h3 class="project-title">ServeCrypt: Secure Encrypted Data Transmission</h3>
-              <p class="project-desc">
-                High-performance cryptographic server implementing multi-layered end-to-end encryption protocols, digital signatures, and tamper-proof session key negotiation for distributed enterprise nodes.
-              </p>
-
-              <ul class="project-highlights">
-                <li>AES-GCM authenticated encryption paired with RSA key exchange.</li>
-                <li>Zero-knowledge packet payload routing and replay attack mitigation.</li>
-                <li>Modular REST/Socket architecture with client verification.</li>
-              </ul>
             </div>
 
-            <div class="project-footer">
-              <span class="tag-pill">Cryptography</span>
-              <span class="tag-pill">Python</span>
-              <span class="tag-pill">Network Security</span>
-              <span class="tag-pill">AES-GCM</span>
-            </div>
-          </div>
+            <!-- Card 4: Procrastinate Figma UI/UX -->
+            <div class="project-stack-card" data-category="ui-ux">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">UI/UX DESIGN · FIGMA PROTOTYPE</div>
+                  <div class="stack-card-links">
+                    <span class="pill-badge" style="font-size: 0.7rem; padding: 2px 7px; color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">Figma</span>
+                  </div>
+                </div>
 
-          <!-- 8. Medical ROI Compression -->
-          <div class="project-card interactive-card reveal reveal-delay-1" data-category="healthcare ai-ml">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Computer Vision & Medical Imaging</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/medical-roi-compression" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <h3 class="stack-card-title">Procrastinate: Gamified Anti-Procrastination Flow</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Interactive micro-task breakout flow with frictionless onboarding journeys</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Apple Human Interface Guideline-inspired dark mode component design system</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Gamified sprint rewards pacing psychological resistance and cognitive load</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Full-fidelity clickable wireframes and component interaction states</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://www.figma.com/@sarathy" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Figma Prototype</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </a>
                 </div>
-              </div>
 
-              <h3 class="project-title">Medical ROI-Aware Image Compression</h3>
-              <p class="project-desc">
-                Region-of-Interest (ROI) segmentation framework for ultra-high-resolution medical scans. Preserves 100% lossless fidelity over diagnostic regions while compressing non-critical backgrounds by &gt;65%.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Automated ROI boundary segmentation based on tissue density heuristics.</li>
-                <li>Hybrid lossless/lossy compression minimizing clinical storage.</li>
-                <li>Compliant with clinical PACS / DICOM transmission formats.</li>
-              </ul>
-            </div>
-
-            <div class="project-footer">
-              <span class="tag-pill">Computer Vision</span>
-              <span class="tag-pill">OpenCV</span>
-              <span class="tag-pill">NumPy</span>
-              <span class="tag-pill">Compression</span>
-            </div>
-          </div>
-
-          <!-- 9. Local Market Hub -->
-          <div class="project-card interactive-card reveal reveal-delay-2" data-category="streaming ui-ux">
-            <div>
-              <div class="project-card-header">
-                <span class="project-category">Hyperlocal Commerce Platform</span>
-                <div class="project-links">
-                  <a href="https://github.com/SARATHYB/Local-Market-Hub" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  </a>
+                <div class="stack-card-tags">
+                  <span class="tag-pill">Figma</span>
+                  <span class="tag-pill">UI/UX Design</span>
+                  <span class="tag-pill">Design Systems</span>
+                  <span class="tag-pill">Prototypes</span>
                 </div>
               </div>
-
-              <h3 class="project-title">Local-Market-Hub: Community Vendor Portal</h3>
-              <p class="project-desc">
-                Full-stack marketplace connecting local producers with regional shoppers. Features real-time inventory management, geolocation merchant discovery, and responsive order dispatch.
-              </p>
-
-              <ul class="project-highlights">
-                <li>Dynamic merchant catalog search with price comparison filtering.</li>
-                <li>Responsive mobile-first interface optimized for fast checkout.</li>
-                <li>Clean modular frontend-backend communication architecture.</li>
-              </ul>
             </div>
 
-            <div class="project-footer">
-              <span class="tag-pill">Full Stack</span>
-              <span class="tag-pill">React</span>
-              <span class="tag-pill">JavaScript</span>
-              <span class="tag-pill">E-Commerce</span>
+            <!-- Card 5: Canva Creative Campaigns -->
+            <div class="project-stack-card" data-category="ui-ux">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">VISUAL IDENTITY &amp; EVENT DESIGN</div>
+                  <div class="stack-card-links">
+                    <span class="pill-badge" style="font-size: 0.7rem; padding: 2px 7px; color: var(--accent-cyan); border-color: rgba(0, 240, 255, 0.3);">Canva</span>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">Canva Creative Campaigns &amp; Event Brand Visuals</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>High-impact promotional poster sets and stage LED backdrop designs</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Informational awareness campaigns for POCSO Act &amp; Vigilance Awareness Week</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Social media carousels and brand guidelines maintaining consistent typography</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Mobilized outreach for Asia's massive Riviera '26 and NSS blood donation drives</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="#gallery" class="btn btn-glow stack-btn">
+                    <span>View Event Gallery</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+
+                <div class="stack-card-tags">
+                  <span class="tag-pill">Canva Pro</span>
+                  <span class="tag-pill">Event Branding</span>
+                  <span class="tag-pill">Digital Media</span>
+                  <span class="tag-pill">Riviera '26</span>
+                </div>
+              </div>
             </div>
+
+            <!-- Card 6: Retinal Disease Diagnosis -->
+            <div class="project-stack-card" data-category="ai-ml healthcare">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">MEDICAL VISION · CLINICAL PRECISION</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/Eye-Disease-Classification" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">Deep Learning-Based Retinal Disease Diagnosis</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Ensemble of ResNet101, ConvNeXt-Tiny, and InceptionV3 architectures</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Automated preprocessing pipeline eliminating ocular illumination artifacts</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Validated across clinical diagnostic benchmarks for glaucoma &amp; retinopathy</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Grad-CAM class activation maps generating interpretable diagnostic heatmaps</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/Eye-Disease-Classification" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Deep Learning Repo</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+
+                <div class="stack-card-tags">
+                  <span class="tag-pill">ResNet101</span>
+                  <span class="tag-pill">ConvNeXt</span>
+                  <span class="tag-pill">InceptionV3</span>
+                  <span class="tag-pill">TensorFlow</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 7: ServeCrypt -->
+            <div class="project-stack-card" data-category="streaming">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">CRYPTOGRAPHY &amp; INFRASTRUCTURE</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/ServeCrypt" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">ServeCrypt: Secure Encrypted Data Transmission</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>AES-GCM authenticated encryption paired with RSA key exchange protocols</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Zero-knowledge packet payload routing with anti-replay attack mitigation</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Modular REST/Socket multi-threaded architecture with client verification</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Sub-millisecond handshake overhead under high concurrency workloads</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/ServeCrypt" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Cryptography Repo</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+
+                <div class="stack-card-tags">
+                  <span class="tag-pill">AES-GCM</span>
+                  <span class="tag-pill">RSA Security</span>
+                  <span class="tag-pill">Python Sockets</span>
+                  <span class="tag-pill">Network Security</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 8: Medical ROI Compression -->
+            <div class="project-stack-card" data-category="healthcare ai-ml">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">COMPUTER VISION · MEDICAL IMAGING</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/medical-roi-compression" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">Medical ROI-Aware Image Compression</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Automated ROI boundary segmentation based on tissue density heuristics</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Preserves 100% lossless fidelity over diagnostic regions</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Compresses non-critical backgrounds by &gt;65% for clinical PACS networks</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Compliant with DICOM transmission formats and medical archive storage</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/medical-roi-compression" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Compression Repo</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+
+                <div class="stack-card-tags">
+                  <span class="tag-pill">OpenCV</span>
+                  <span class="tag-pill">NumPy</span>
+                  <span class="tag-pill">DICOM</span>
+                  <span class="tag-pill">Lossless Compression</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 9: Local-Market-Hub -->
+            <div class="project-stack-card" data-category="streaming ui-ux">
+              <div class="stack-card-inner">
+                <div class="stack-card-top">
+                  <div class="stack-card-badge">HYPERLOCAL COMMERCE · FULL STACK</div>
+                  <div class="stack-card-links">
+                    <a href="https://github.com/SARATHYB/Local-Market-Hub" target="_blank" rel="noopener noreferrer" class="icon-link" title="GitHub Repository">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <h3 class="stack-card-title">Local-Market-Hub: Community Vendor Portal</h3>
+
+                <ul class="stack-card-checklist">
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Dynamic merchant catalog search with real-time price comparison filtering</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Responsive mobile-first interface optimized for fast checkout journeys</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Modular RESTful API integration for instant merchant inventory management</span>
+                  </li>
+                  <li>
+                    <span class="check-icon">✔</span>
+                    <span>Geolocation-based local vendor discovery and order dispatch telemetry</span>
+                  </li>
+                </ul>
+
+                <div class="stack-card-cta">
+                  <a href="https://github.com/SARATHYB/Local-Market-Hub" target="_blank" rel="noopener noreferrer" class="btn btn-glow stack-btn">
+                    <span>Explore Marketplace Repo</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </div>
+
+                <div class="stack-card-tags">
+                  <span class="tag-pill">React</span>
+                  <span class="tag-pill">Node.js</span>
+                  <span class="tag-pill">JavaScript</span>
+                  <span class="tag-pill">E-Commerce</span>
+                </div>
+              </div>
+            </div>
+
           </div>
 
+          <button class="stack-nav-btn next" aria-label="Next Project Card">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
+
+        <!-- Stack Indicator Dots -->
+        <div class="stack-dots-row" id="stack-dots-row"></div>
       </div>
     </section>
 
@@ -1838,17 +1951,11 @@
          CONTACT SECTION (TOUCHDOWN ON EARTH AT THE JOURNEY'S END)
          ========================================================================== -->
     <section id="contact">
-      <!-- Glowing Earth Atmospheric Curve & Curvature Landing Stage -->
-      <div class="earth-landing-stage">
-        <div class="earth-atmosphere-glow"></div>
-        <div class="earth-curve-arc"></div>
-      </div>
-
       <div class="container" style="position: relative; z-index: 2;">
         <div class="section-header reveal">
           <div class="earth-landing-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <span>Touchdown On Earth // Hosur & Vellore Coordinates</span>
+            <span>Touchdown On Earth // Hosur &amp; Vellore Coordinates</span>
           </div>
           <h2 class="section-title">Let's Build Something Exceptional</h2>
           <p class="section-description">
@@ -1947,6 +2054,28 @@
           </div>
 
         </div>
+
+        <!-- Iron Man Landing on Earth at the Bottom -->
+        <div class="ironman-landing-stage reveal">
+          <div class="ironman-landing-figure">
+            <img src="assets/ironman-landing.png" alt="Iron Man Touching Down on Earth" class="ironman-landing-img" />
+            <div class="repulsor-beam beam-left"></div>
+            <div class="repulsor-beam beam-right"></div>
+            <div class="repulsor-impact-ring"></div>
+          </div>
+          <div class="ironman-telemetry-pill">
+            <span class="ironman-mini-mask">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                <path d="M4 8.5C4 4.5 7.5 2 12 2s8 2.5 8 6.5c0 3.5-.8 7-2 10.5-.6 1.8-2 3-3.8 3h-4.4c-1.8 0-3.2-1.2-3.8-3C4.8 15.5 4 12 4 8.5z" fill="#dc2626"/>
+                <path d="M7 9c.5-3 2.5-4.5 5-4.5s4.5 1.5 5 4.5c0 3.5-.5 6-1.5 8-.5 1-1.5 1.5-2.5 1.5h-2c-1 0-2-.5-2.5-1.5-1-2-1.5-4.5-1.5-8z" fill="#fbbf24"/>
+                <rect x="8" y="10" width="2.8" height="1.2" rx="0.4" fill="#00f0ff"/>
+                <rect x="13.2" y="10" width="2.8" height="1.2" rx="0.4" fill="#00f0ff"/>
+              </svg>
+            </span>
+            <span>STARK PROTOCOL // MARK LXXXV TOUCHDOWN ON EARTH COMPLETE</span>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -2008,15 +2137,6 @@
         </button>
       </div>
     </div>
-  </div>
-
-  <!-- Floating Like Button (Quick Access at any scroll point) -->
-  <div class="floating-like-pill like-trigger-btn" title="Love this portfolio? Hit Like!">
-    <svg class="heart-svg" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-    <span>Like</span>
-    <span class="like-count-num">142</span>
   </div>
 
   <!-- Toast Notification Pop-up -->

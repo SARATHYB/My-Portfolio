@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticleCanvas();
   initScrollEngine();
   initCardLighting();
-  initProjectFilters();
+  initProjectsStackedCarousel();
   initJarvisHUD();
   initLikeButtons();
   initGalleryCarousels();
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. CELESTIAL GALAXY TO EARTH LANDING CANVAS ENGINE
+   1. CELESTIAL GALAXY, PLANETS, SATELLITE TO EARTH LANDING CANVAS ENGINE
    ========================================================================== */
 function initParticleCanvas() {
   const canvas = document.getElementById('particles-canvas');
@@ -31,7 +31,6 @@ function initParticleCanvas() {
   // 1. Multi-Layered Celestial Stars (with parallax depth)
   const starCount = Math.min(Math.floor((width * height) / 5000), 280);
   const stars = [];
-
   const starColors = ['#ffffff', '#ffffff', '#e0f2fe', '#bae6fd', '#c4b5fd', '#fef08a', '#fbcfe8'];
 
   for (let i = 0; i < starCount; i++) {
@@ -43,12 +42,35 @@ function initParticleCanvas() {
       baseAlpha: Math.random() * 0.7 + 0.3,
       twinkleSpeed: Math.random() * 0.04 + 0.01,
       phase: Math.random() * Math.PI * 2,
-      speedZ: Math.random() * 0.6 + 0.2, // Parallax depth
+      speedZ: Math.random() * 0.6 + 0.2,
       color: starColors[Math.floor(Math.random() * starColors.length)]
     });
   }
 
-  // 2. Cosmic Shooting Stars (Meteors)
+  // 2. Spiral Milky Way Galaxy Particles at the Start
+  const galaxyStars = [];
+  const galaxyArms = 2;
+  const starsPerArm = 110;
+  for (let arm = 0; arm < galaxyArms; arm++) {
+    const armAngle = (arm * Math.PI * 2) / galaxyArms;
+    for (let i = 0; i < starsPerArm; i++) {
+      const t = i / starsPerArm;
+      const angle = armAngle + t * 4.4;
+      const dist = 16 + Math.pow(t, 1.4) * Math.min(width * 0.38, 330);
+      const scatter = (Math.random() - 0.5) * (dist * 0.34);
+      galaxyStars.push({
+        baseAngle: angle,
+        dist: dist + scatter,
+        size: Math.random() < 0.75 ? Math.random() * 1.3 + 0.5 : Math.random() * 2.2 + 1.2,
+        color: Math.random() < 0.4 ? '#ffffff' : (Math.random() < 0.7 ? '#38bdf8' : '#c084fc'),
+        alpha: Math.random() * 0.75 + 0.25,
+        twinkleSpeed: Math.random() * 0.04 + 0.01,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  // 3. Cosmic Shooting Stars (Meteors)
   const shootingStars = [];
   function spawnShootingStar() {
     if (shootingStars.length < 2 && Math.random() < 0.4) {
@@ -57,7 +79,7 @@ function initParticleCanvas() {
         y: Math.random() * (height * 0.4),
         length: Math.random() * 90 + 70,
         speed: Math.random() * 12 + 14,
-        angle: (Math.PI / 4) + (Math.random() - 0.5) * 0.2, // ~45 degrees
+        angle: (Math.PI / 4) + (Math.random() - 0.5) * 0.2,
         alpha: 1,
         life: 0,
         maxLife: Math.random() * 35 + 25
@@ -67,15 +89,12 @@ function initParticleCanvas() {
 
   setInterval(spawnShootingStar, 2400);
 
-  // 3. Procedural Earth City Lights (Twinkling gold dots on the night side of Earth)
+  // 4. Procedural Earth City Lights (Twinkling gold dots on the night side of Earth)
   const cityLights = [];
   const cityCount = 65;
   for (let i = 0; i < cityCount; i++) {
-    // Cluster them in arcs mimicking continents / coastlines
-    const angle = (Math.PI * 0.6) + (Math.random() - 0.5) * 1.1;
-    const distanceFactor = Math.random() * 0.18 + 0.82;
     cityLights.push({
-      angleOffset: (Math.random() - 0.5) * 0.8,
+      angleOffset: (Math.random() - 0.5) * 0.85,
       yOffset: Math.random() * 70 + 20,
       radius: Math.random() * 1.6 + 0.6,
       baseAlpha: Math.random() * 0.7 + 0.3,
@@ -84,7 +103,7 @@ function initParticleCanvas() {
     });
   }
 
-  // 4. Foreground Interactive Constellation Net
+  // 5. Foreground Interactive Constellation Net
   const particles = [];
   const particleCount = Math.min(Math.floor((width * height) / 24000), 45);
   const maxDistance = 110;
@@ -147,8 +166,6 @@ function initParticleCanvas() {
     particles.push(new Particle());
   }
 
-  let lastScrollY = window.scrollY;
-
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
@@ -157,37 +174,66 @@ function initParticleCanvas() {
     const scrollRatio = Math.min(1, Math.max(0, scrollY / docHeight));
 
     // A. Cosmic Galaxy Nebula Clouds (Deep Space Ambience)
-    const galaxyAlpha = Math.max(0, 1 - scrollRatio * 1.2);
-    if (galaxyAlpha > 0.05) {
+    const galaxyAlpha = Math.max(0, 1 - scrollRatio * 3.2);
+    if (galaxyAlpha > 0.04) {
       ctx.save();
       ctx.globalAlpha = galaxyAlpha;
 
       // Nebula 1: Deep Cyan / Teal
-      const neb1 = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, width * 0.45);
-      neb1.addColorStop(0, 'rgba(0, 240, 255, 0.09)');
-      neb1.addColorStop(0.5, 'rgba(14, 116, 233, 0.04)');
+      const neb1 = ctx.createRadialGradient(width * 0.75, height * 0.28, 40, width * 0.75, height * 0.28, width * 0.48);
+      neb1.addColorStop(0, 'rgba(0, 240, 255, 0.12)');
+      neb1.addColorStop(0.5, 'rgba(14, 116, 233, 0.05)');
       neb1.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = neb1;
       ctx.fillRect(0, 0, width, height);
 
       // Nebula 2: Deep Violet / Cosmic Magenta
-      const neb2 = ctx.createRadialGradient(width * 0.15, height * 0.45, 50, width * 0.15, height * 0.45, width * 0.5);
-      neb2.addColorStop(0, 'rgba(168, 85, 247, 0.08)');
-      neb2.addColorStop(0.6, 'rgba(236, 72, 153, 0.03)');
+      const neb2 = ctx.createRadialGradient(width * 0.2, height * 0.4, 50, width * 0.2, height * 0.4, width * 0.45);
+      neb2.addColorStop(0, 'rgba(168, 85, 247, 0.10)');
+      neb2.addColorStop(0.6, 'rgba(236, 72, 153, 0.04)');
       neb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = neb2;
       ctx.fillRect(0, 0, width, height);
 
+      // B. Spiral Milky Way Galaxy (Rotating logarithmic spiral arms)
+      const gx = width * 0.72;
+      const gy = height * 0.28 - scrollY * 0.3;
+
+      // Radiant Galactic Nucleus
+      const coreGrad = ctx.createRadialGradient(gx, gy, 0, gx, gy, 190);
+      coreGrad.addColorStop(0, 'rgba(254, 240, 138, 0.28)');
+      coreGrad.addColorStop(0.2, 'rgba(0, 240, 255, 0.15)');
+      coreGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.07)');
+      coreGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = coreGrad;
+      ctx.beginPath();
+      ctx.arc(gx, gy, 190, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Rotating Stars in Spiral Arms
+      const rot = Date.now() * 0.00012;
+      galaxyStars.forEach((star) => {
+        star.phase += star.twinkleSpeed;
+        const a = star.alpha * (0.6 + 0.4 * Math.sin(star.phase));
+        const curAngle = star.baseAngle + rot;
+        const sx = gx + Math.cos(curAngle) * star.dist;
+        const sy = gy + Math.sin(curAngle) * (star.dist * 0.62); // Perspective angle
+        ctx.fillStyle = star.color;
+        ctx.globalAlpha = a * galaxyAlpha;
+        ctx.beginPath();
+        ctx.arc(sx, sy, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
       ctx.restore();
     }
 
-    // B. Twinkling Celestial Stars with Parallax Shift
+    // C. Twinkling Celestial Background Stars with Parallax Shift
     const scrollDelta = scrollY * 0.18;
     stars.forEach((star) => {
       star.phase += star.twinkleSpeed;
       const alpha = star.baseAlpha * (0.55 + 0.45 * Math.sin(star.phase));
 
-      // Parallax wrap
       let drawY = (star.baseY - scrollDelta * star.speedZ) % height;
       if (drawY < 0) drawY += height;
 
@@ -198,7 +244,6 @@ function initParticleCanvas() {
       ctx.arc(star.x, drawY, star.radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Subtle flare for brightest stars
       if (star.radius > 2.0) {
         ctx.strokeStyle = star.color;
         ctx.lineWidth = 0.5;
@@ -212,7 +257,7 @@ function initParticleCanvas() {
       ctx.restore();
     });
 
-    // C. Shooting Stars Animation
+    // D. Shooting Stars Animation
     for (let i = shootingStars.length - 1; i >= 0; i--) {
       const s = shootingStars[i];
       s.life++;
@@ -242,7 +287,206 @@ function initParticleCanvas() {
       }
     }
 
-    // D. Foreground Constellation Net (Gently responsive to mouse)
+    // E. PLANET 1: MARS (Rust-red planet drifting as user scrolls to Experience/Patent)
+    if (scrollRatio >= 0.16 && scrollRatio <= 0.44) {
+      const p = (scrollRatio - 0.16) / 0.28;
+      const mAlpha = Math.sin(p * Math.PI);
+      const mx = width * 0.14;
+      const my = height * (0.86 - p * 0.72);
+      const mRadius = Math.min(36, width * 0.04);
+
+      ctx.save();
+      ctx.globalAlpha = mAlpha * 0.88;
+
+      // Glow
+      const mGlow = ctx.createRadialGradient(mx, my, mRadius * 0.75, mx, my, mRadius * 1.4);
+      mGlow.addColorStop(0, 'rgba(239, 68, 68, 0.25)');
+      mGlow.addColorStop(1, 'transparent');
+      ctx.fillStyle = mGlow;
+      ctx.beginPath();
+      ctx.arc(mx, my, mRadius * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sphere
+      const mGrad = ctx.createRadialGradient(mx - mRadius * 0.3, my - mRadius * 0.3, mRadius * 0.1, mx, my, mRadius);
+      mGrad.addColorStop(0, '#f87171');
+      mGrad.addColorStop(0.45, '#dc2626');
+      mGrad.addColorStop(0.85, '#991b1b');
+      mGrad.addColorStop(1, '#450a0a');
+      ctx.fillStyle = mGrad;
+      ctx.beginPath();
+      ctx.arc(mx, my, mRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Polar Ice Cap
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.beginPath();
+      ctx.ellipse(mx, my - mRadius * 0.75, mRadius * 0.35, mRadius * 0.14, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // F. PLANET 2: JUPITER (Gas Giant with Banded Atmospheric Stripes & Great Red Spot)
+    if (scrollRatio >= 0.32 && scrollRatio <= 0.62) {
+      const p = (scrollRatio - 0.32) / 0.30;
+      const jAlpha = Math.sin(p * Math.PI);
+      const jx = width * 0.87;
+      const jy = height * (0.85 - p * 0.7);
+      const jRadius = Math.min(68, width * 0.075);
+
+      ctx.save();
+      ctx.globalAlpha = jAlpha * 0.85;
+
+      // Atmosphere rim glow
+      const jGlow = ctx.createRadialGradient(jx, jy, jRadius * 0.8, jx, jy, jRadius * 1.4);
+      jGlow.addColorStop(0, 'rgba(251, 191, 36, 0.22)');
+      jGlow.addColorStop(1, 'transparent');
+      ctx.fillStyle = jGlow;
+      ctx.beginPath();
+      ctx.arc(jx, jy, jRadius * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Clipped sphere
+      ctx.beginPath();
+      ctx.arc(jx, jy, jRadius, 0, Math.PI * 2);
+      ctx.clip();
+
+      // Base shading
+      const jBase = ctx.createLinearGradient(jx - jRadius, jy, jx + jRadius, jy);
+      jBase.addColorStop(0, '#d97706');
+      jBase.addColorStop(0.35, '#fef3c7');
+      jBase.addColorStop(0.7, '#b45309');
+      jBase.addColorStop(1, '#451a03');
+      ctx.fillStyle = jBase;
+      ctx.fillRect(jx - jRadius, jy - jRadius, jRadius * 2, jRadius * 2);
+
+      // Stripes
+      const bands = [-0.7, -0.45, -0.2, 0.05, 0.3, 0.55, 0.8];
+      bands.forEach((bY, bi) => {
+        ctx.fillStyle = bi % 2 === 0 ? 'rgba(180, 83, 9, 0.45)' : 'rgba(254, 243, 199, 0.45)';
+        ctx.fillRect(jx - jRadius, jy + bY * jRadius, jRadius * 2, jRadius * 0.22);
+      });
+
+      // Great Red Spot
+      ctx.fillStyle = '#dc2626';
+      ctx.beginPath();
+      ctx.ellipse(jx + jRadius * 0.25, jy + jRadius * 0.35, jRadius * 0.22, jRadius * 0.12, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // G. PLANET 3: SATURN WITH TILTED GLOWING RINGS
+    if (scrollRatio >= 0.46 && scrollRatio <= 0.74) {
+      const p = (scrollRatio - 0.46) / 0.28;
+      const sAlpha = Math.sin(p * Math.PI);
+      const sx = width * 0.12;
+      const sy = height * (0.85 - p * 0.7);
+      const sRadius = Math.min(46, width * 0.05);
+
+      ctx.save();
+      ctx.globalAlpha = sAlpha * 0.88;
+
+      // Saturn Back Ring Arc
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.rotate(-0.4);
+      ctx.strokeStyle = 'rgba(252, 211, 77, 0.65)';
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, sRadius * 2.1, sRadius * 0.65, 0, Math.PI, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // Saturn Sphere
+      const sGrad = ctx.createRadialGradient(sx - sRadius * 0.3, sy - sRadius * 0.3, sRadius * 0.1, sx, sy, sRadius);
+      sGrad.addColorStop(0, '#fef08a');
+      sGrad.addColorStop(0.5, '#eab308');
+      sGrad.addColorStop(0.85, '#a16207');
+      sGrad.addColorStop(1, '#422006');
+      ctx.fillStyle = sGrad;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Saturn Front Ring Arc
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.rotate(-0.4);
+      ctx.strokeStyle = 'rgba(253, 224, 71, 0.75)';
+      ctx.lineWidth = 12;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, sRadius * 2.1, sRadius * 0.65, 0, 0, Math.PI);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(254, 240, 138, 0.45)';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, sRadius * 1.5, sRadius * 0.45, 0, 0, Math.PI);
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    // H. ORBITAL SATELLITE (Solar Panels, Chassis & Blinking Beacon)
+    if (scrollRatio >= 0.54 && scrollRatio <= 0.82) {
+      const p = (scrollRatio - 0.54) / 0.28;
+      const satAlpha = Math.sin(p * Math.PI);
+      const satX = width * (0.2 + p * 0.58);
+      const satY = height * (0.16 + p * 0.32);
+
+      ctx.save();
+      ctx.globalAlpha = satAlpha * 0.95;
+      ctx.translate(satX, satY);
+      ctx.rotate(0.35 + p * 0.15);
+
+      // Chassis
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillRect(-12, -8, 24, 16);
+      ctx.strokeStyle = '#d97706';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(-12, -8, 24, 16);
+
+      // Solar Panel Wings
+      ctx.fillStyle = '#1e3a8a';
+      ctx.fillRect(-46, -11, 30, 22);
+      ctx.strokeStyle = '#60a5fa';
+      ctx.strokeRect(-46, -11, 30, 22);
+      ctx.beginPath();
+      ctx.moveTo(-31, -11); ctx.lineTo(-31, 11);
+      ctx.moveTo(-46, 0); ctx.lineTo(-16, 0);
+      ctx.stroke();
+
+      ctx.fillRect(16, -11, 30, 22);
+      ctx.strokeRect(16, -11, 30, 22);
+      ctx.beginPath();
+      ctx.moveTo(31, -11); ctx.lineTo(31, 11);
+      ctx.moveTo(16, 0); ctx.lineTo(46, 0);
+      ctx.stroke();
+
+      // Antenna Dish
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, -14, 10, Math.PI * 0.2, Math.PI * 0.8);
+      ctx.stroke();
+
+      // Beacon Flash
+      if (Math.sin(Date.now() * 0.009) > 0.05) {
+        ctx.fillStyle = '#ef4444';
+        ctx.shadowColor = '#ef4444';
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(8, -8, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    // I. Foreground Constellation Net (Responsive to mouse)
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -266,25 +510,25 @@ function initParticleCanvas() {
       p.draw();
     });
 
-    // E. LANDING ON EARTH: Majestic Atmospheric Glow & Planet Curvature (When approaching Contact)
-    if (scrollRatio > 0.55) {
-      const landingProgress = Math.min(1, (scrollRatio - 0.55) / 0.40);
+    // J. TOUCHDOWN ON EARTH: Atmosphere Glow & Rising Planet Curvature (At Contact Section)
+    if (scrollRatio > 0.65) {
+      const landingProgress = Math.min(1, (scrollRatio - 0.65) / 0.32);
       const earthCenterX = width / 2;
-      const earthCenterY = height + (340 - landingProgress * 220); // Earth rises into view
-      const earthRadiusX = width * 0.85;
+      const earthCenterY = height + (320 - landingProgress * 230);
+      const earthRadiusX = width * 0.88;
       const earthRadiusY = 320;
 
       ctx.save();
 
-      // 1. Vast Atmospheric Glow Dome (Rayleigh scattering)
+      // 1. Rayleigh Scattering Atmospheric Glow Dome
       const atmosGrad = ctx.createRadialGradient(
         earthCenterX, earthCenterY, earthRadiusY * 0.5,
         earthCenterX, earthCenterY, earthRadiusX * 1.15
       );
-      atmosGrad.addColorStop(0, `rgba(6, 30, 85, ${0.90 * landingProgress})`);
-      atmosGrad.addColorStop(0.35, `rgba(14, 116, 233, ${0.45 * landingProgress})`);
-      atmosGrad.addColorStop(0.65, `rgba(0, 240, 255, ${0.25 * landingProgress})`);
-      atmosGrad.addColorStop(0.9, `rgba(59, 130, 246, ${0.08 * landingProgress})`);
+      atmosGrad.addColorStop(0, `rgba(4, 24, 75, ${0.90 * landingProgress})`);
+      atmosGrad.addColorStop(0.35, `rgba(14, 116, 233, ${0.48 * landingProgress})`);
+      atmosGrad.addColorStop(0.65, `rgba(0, 240, 255, ${0.28 * landingProgress})`);
+      atmosGrad.addColorStop(0.9, `rgba(59, 130, 246, ${0.10 * landingProgress})`);
       atmosGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       ctx.fillStyle = atmosGrad;
@@ -293,10 +537,10 @@ function initParticleCanvas() {
       // 2. Earth Planet Silhouette (Curved dark surface)
       ctx.beginPath();
       ctx.ellipse(earthCenterX, earthCenterY, earthRadiusX, earthRadiusY, 0, 0, Math.PI * 2);
-      ctx.fillStyle = '#01030b';
+      ctx.fillStyle = '#01030a';
       ctx.fill();
 
-      // 3. Glowing Atmospheric Rim Curve (Electric Cyan / Horizon Light)
+      // 3. Glowing Atmospheric Rim Curve
       ctx.beginPath();
       ctx.ellipse(earthCenterX, earthCenterY, earthRadiusX, earthRadiusY, 0, Math.PI * 1.05, Math.PI * 1.95);
       ctx.strokeStyle = `rgba(0, 240, 255, ${0.85 * landingProgress})`;
@@ -305,18 +549,15 @@ function initParticleCanvas() {
       ctx.shadowBlur = 30 * landingProgress;
       ctx.stroke();
 
-      // Secondary soft outer rim
       ctx.lineWidth = 8;
-      ctx.strokeStyle = `rgba(59, 130, 246, ${0.35 * landingProgress})`;
-      ctx.shadowBlur = 45 * landingProgress;
+      ctx.strokeStyle = `rgba(59, 130, 246, ${0.4 * landingProgress})`;
+      ctx.shadowBlur = 50 * landingProgress;
       ctx.stroke();
 
       // 4. Golden City Lights on Earth's Night Side
       cityLights.forEach((city) => {
         city.phase += city.twinkleSpeed;
         const alpha = city.baseAlpha * (0.6 + 0.4 * Math.sin(city.phase)) * landingProgress;
-        
-        // Position along the curved Earth surface
         const cityX = earthCenterX + city.angleOffset * (earthRadiusX * 0.7);
         const cityY = earthCenterY - Math.sqrt(Math.max(0, 1 - Math.pow((cityX - earthCenterX) / earthRadiusX, 2))) * (earthRadiusY * 0.85) + city.yOffset;
 
@@ -417,37 +658,163 @@ function initCardLighting() {
 }
 
 /* ==========================================================================
-   4. PROJECT FILTERING ENGINE
+   4. 3D STACKED CARDS INFINITE CAROUSEL ENGINE (PROJECTS)
    ========================================================================== */
-function initProjectFilters() {
+function initProjectsStackedCarousel() {
+  const stage = document.getElementById('projects-stack-stage');
+  const cards = Array.from(document.querySelectorAll('.project-stack-card'));
+  const prevBtn = document.querySelector('.stack-nav-btn.prev');
+  const nextBtn = document.querySelector('.stack-nav-btn.next');
+  const dotsContainer = document.getElementById('stack-dots-row');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
 
+  if (!stage || cards.length === 0) return;
+
+  let activeFilter = 'all';
+  let filteredCards = [...cards];
+  let currentIndex = 0;
+
+  function updateFilteredCards() {
+    filteredCards = cards.filter((card) => {
+      const category = card.getAttribute('data-category') || '';
+      return activeFilter === 'all' || category.includes(activeFilter);
+    });
+
+    if (currentIndex >= filteredCards.length) {
+      currentIndex = 0;
+    }
+
+    renderDots();
+    updateCardStack();
+  }
+
+  function renderDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    filteredCards.forEach((_, idx) => {
+      const dot = document.createElement('span');
+      dot.className = `stack-dot ${idx === currentIndex ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to project ${idx + 1}`);
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        updateCardStack();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function updateCardStack() {
+    const total = filteredCards.length;
+    if (total === 0) return;
+
+    // Reset and hide all cards
+    cards.forEach((card) => {
+      card.className = 'project-stack-card is-hidden';
+      card.style.display = 'none';
+      card.onclick = null;
+    });
+
+    filteredCards.forEach((card, idx) => {
+      card.style.display = 'flex';
+
+      // Circular distance modulo
+      let diff = idx - currentIndex;
+      if (diff > total / 2) diff -= total;
+      if (diff < -total / 2) diff += total;
+
+      card.className = 'project-stack-card';
+
+      if (diff === 0) {
+        card.classList.add('is-active');
+        card.onclick = null;
+      } else if (diff === 1) {
+        card.classList.add('is-next');
+        card.onclick = () => {
+          currentIndex = (currentIndex + 1) % total;
+          updateCardStack();
+        };
+      } else if (diff === -1) {
+        card.classList.add('is-prev');
+        card.onclick = () => {
+          currentIndex = (currentIndex - 1 + total) % total;
+          updateCardStack();
+        };
+      } else if (diff === 2) {
+        card.classList.add('is-far-next');
+      } else if (diff === -2) {
+        card.classList.add('is-far-prev');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+
+    // Update dots
+    const dots = dotsContainer ? dotsContainer.querySelectorAll('.stack-dot') : [];
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+  function nextCard() {
+    if (filteredCards.length <= 1) return;
+    currentIndex = (currentIndex + 1) % filteredCards.length;
+    updateCardStack();
+  }
+
+  function prevCard() {
+    if (filteredCards.length <= 1) return;
+    currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
+    updateCardStack();
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', nextCard);
+  if (prevBtn) prevBtn.addEventListener('click', prevCard);
+
+  // Filter Buttons
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       filterBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      projectCards.forEach((card) => {
-        const category = card.getAttribute('data-category') || '';
-        if (filter === 'all' || category.includes(filter)) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(15px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 250);
-        }
-      });
+      activeFilter = btn.getAttribute('data-filter') || 'all';
+      currentIndex = 0;
+      updateFilteredCards();
     });
   });
+
+  // Touch Swipe
+  let touchStartX = 0;
+  stage.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  stage.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 40) {
+      if (diff < 0) nextCard();
+      else prevCard();
+    }
+  }, { passive: true });
+
+  // Mouse Drag on Stage
+  let isDragging = false;
+  let dragStartX = 0;
+  stage.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    dragStartX = e.clientX;
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diff = e.clientX - dragStartX;
+    if (Math.abs(diff) > 50) {
+      if (diff < 0) nextCard();
+      else prevCard();
+    }
+  });
+
+  // Initialize
+  updateFilteredCards();
 }
 
 /* ==========================================================================
@@ -582,7 +949,7 @@ function initLikeButtons() {
 }
 
 /* ==========================================================================
-   7. PHOTO GALLERY CAROUSELS (SOLO & SQUAD)
+   7. PHOTO GALLERY CAROUSELS (SOLO & SQUAD - INFINITE LOOP & SYNCED NAVIGATOR)
    ========================================================================== */
 function initGalleryCarousels() {
   const tabBtns = document.querySelectorAll('.gallery-tab-btn');
@@ -608,42 +975,94 @@ function initGalleryCarousels() {
     const trackWrapper = block.querySelector('.carousel-track-wrapper');
     const prevBtn = block.querySelector('.carousel-btn.prev');
     const nextBtn = block.querySelector('.carousel-btn.next');
-    const dots = block.querySelectorAll('.carousel-dot');
+    const dots = Array.from(block.querySelectorAll('.carousel-dot'));
+    const cards = Array.from(block.querySelectorAll('.gallery-card'));
 
-    if (!trackWrapper) return;
+    if (!trackWrapper || cards.length === 0) return;
 
-    const scrollStep = 340;
+    let currentIndex = 0;
+    const total = cards.length;
 
+    function scrollToCard(idx, smooth = true) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      currentIndex = idx;
+
+      const card = cards[currentIndex];
+      if (!card) return;
+
+      const targetScroll = card.offsetLeft - (trackWrapper.clientWidth - card.clientWidth) / 2;
+      trackWrapper.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+
+      updateDots();
+    }
+
+    function updateDots() {
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    // Infinite loop next / prev
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        trackWrapper.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToCard(currentIndex - 1);
       });
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        trackWrapper.scrollBy({ left: scrollStep, behavior: 'smooth' });
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToCard(currentIndex + 1);
       });
     }
 
+    // Dots click without full page jump
     dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        const cards = block.querySelectorAll('.gallery-card');
-        if (cards[idx]) {
-          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToCard(idx);
+      });
+    });
+
+    // Real-time synchronization as the user scrolls
+    trackWrapper.addEventListener('scroll', () => {
+      const center = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((card, idx) => {
+        const cardCenter = card.offsetLeft + card.clientWidth / 2;
+        const dist = Math.abs(center - cardCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          closestIdx = idx;
         }
       });
-    });
 
-    trackWrapper.addEventListener('scroll', () => {
-      const scrollLeft = trackWrapper.scrollLeft;
-      const cardWidth = 340;
-      const activeIdx = Math.round(scrollLeft / cardWidth);
+      if (closestIdx !== currentIndex) {
+        currentIndex = closestIdx;
+        updateDots();
+      }
+    }, { passive: true });
 
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === activeIdx);
-      });
-    });
+    // Touch swipe support
+    let touchX = 0;
+    trackWrapper.addEventListener('touchstart', (e) => {
+      touchX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    trackWrapper.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].screenX - touchX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) scrollToCard(currentIndex + 1);
+        else scrollToCard(currentIndex - 1);
+      }
+    }, { passive: true });
   });
 }
 
