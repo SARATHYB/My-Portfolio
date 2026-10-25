@@ -77,28 +77,6 @@ My-Portfolio/
 
 ---
 
-## 🚀 How to Run Locally
-
-Simply clone the repository and open `index.html` in any modern browser:
-
-```bash
-git clone https://github.com/SARATHYB/My-Portfolio.git
-cd My-Portfolio
-# Open index.html directly or with your favorite live server
-start index.html
-```
-
----
-
-## 🌐 Deploying to GitHub Pages
-
-1. In your GitHub repository (`SARATHYB/My-Portfolio`), go to **Settings** → **Pages**.
-2. Under **Build and deployment** > **Source**, choose **Deploy from a branch**.
-3. Select the `main` branch and `/ (root)` folder.
-4. Click **Save**. Your site will be live at `https://sarathyb.github.io/My-Portfolio/` within seconds!
-
----
-
 ## 📬 Connect with Me
 
 - **Email**: [bsarathy303@gmail.com](mailto:bsarathy303@gmail.com)
