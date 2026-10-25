@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. CELESTIAL GALAXY TO EARTH LANDING CANVAS
+   1. CELESTIAL GALAXY TO EARTH LANDING CANVAS ENGINE
    ========================================================================== */
 function initParticleCanvas() {
   const canvas = document.getElementById('particles-canvas');
@@ -28,27 +28,67 @@ function initParticleCanvas() {
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  // Background Starfield (Deep Cosmic Stars)
-  const starCount = Math.min(Math.floor((width * height) / 8000), 160);
+  // 1. Multi-Layered Celestial Stars (with parallax depth)
+  const starCount = Math.min(Math.floor((width * height) / 5000), 280);
   const stars = [];
+
+  const starColors = ['#ffffff', '#ffffff', '#e0f2fe', '#bae6fd', '#c4b5fd', '#fef08a', '#fbcfe8'];
 
   for (let i = 0; i < starCount; i++) {
     stars.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.5 + 0.4,
-      baseAlpha: Math.random() * 0.7 + 0.2,
-      twinkleSpeed: Math.random() * 0.03 + 0.008,
+      baseY: Math.random() * height,
+      radius: Math.random() < 0.85 ? Math.random() * 1.2 + 0.4 : Math.random() * 2.2 + 1.2,
+      baseAlpha: Math.random() * 0.7 + 0.3,
+      twinkleSpeed: Math.random() * 0.04 + 0.01,
       phase: Math.random() * Math.PI * 2,
-      color: Math.random() > 0.3 ? '#ffffff' : Math.random() > 0.5 ? '#93c5fd' : '#c4b5fd'
+      speedZ: Math.random() * 0.6 + 0.2, // Parallax depth
+      color: starColors[Math.floor(Math.random() * starColors.length)]
     });
   }
 
-  // Foreground Interactive Neural Constellations
+  // 2. Cosmic Shooting Stars (Meteors)
+  const shootingStars = [];
+  function spawnShootingStar() {
+    if (shootingStars.length < 2 && Math.random() < 0.4) {
+      shootingStars.push({
+        x: Math.random() * width * 0.8 + width * 0.1,
+        y: Math.random() * (height * 0.4),
+        length: Math.random() * 90 + 70,
+        speed: Math.random() * 12 + 14,
+        angle: (Math.PI / 4) + (Math.random() - 0.5) * 0.2, // ~45 degrees
+        alpha: 1,
+        life: 0,
+        maxLife: Math.random() * 35 + 25
+      });
+    }
+  }
+
+  setInterval(spawnShootingStar, 2400);
+
+  // 3. Procedural Earth City Lights (Twinkling gold dots on the night side of Earth)
+  const cityLights = [];
+  const cityCount = 65;
+  for (let i = 0; i < cityCount; i++) {
+    // Cluster them in arcs mimicking continents / coastlines
+    const angle = (Math.PI * 0.6) + (Math.random() - 0.5) * 1.1;
+    const distanceFactor = Math.random() * 0.18 + 0.82;
+    cityLights.push({
+      angleOffset: (Math.random() - 0.5) * 0.8,
+      yOffset: Math.random() * 70 + 20,
+      radius: Math.random() * 1.6 + 0.6,
+      baseAlpha: Math.random() * 0.7 + 0.3,
+      twinkleSpeed: Math.random() * 0.05 + 0.02,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  // 4. Foreground Interactive Constellation Net
   const particles = [];
-  const particleCount = Math.min(Math.floor((width * height) / 22000), 55);
-  const maxDistance = 115;
-  const mouse = { x: null, y: null, radius: 160 };
+  const particleCount = Math.min(Math.floor((width * height) / 24000), 45);
+  const maxDistance = 110;
+  const mouse = { x: null, y: null, radius: 150 };
 
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
@@ -69,10 +109,10 @@ function initParticleCanvas() {
     constructor() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
-      this.radius = Math.random() * 1.6 + 0.8;
-      this.color = Math.random() > 0.4 ? 'rgba(0, 240, 255, ' : 'rgba(59, 130, 246, ';
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.radius = Math.random() * 1.4 + 0.8;
+      this.color = Math.random() > 0.4 ? 'rgba(0, 240, 255, ' : 'rgba(168, 85, 247, ';
       this.baseAlpha = Math.random() * 0.4 + 0.2;
     }
 
@@ -83,15 +123,14 @@ function initParticleCanvas() {
       if (this.x < 0 || this.x > width) this.vx *= -1;
       if (this.y < 0 || this.y > height) this.vy *= -1;
 
-      // Mouse gentle repulsion
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const dist = Math.hypot(dx, dy);
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= (dx / dist) * force * 1.8;
-          this.y -= (dy / dist) * force * 1.8;
+          this.x -= (dx / dist) * force * 1.5;
+          this.y -= (dy / dist) * force * 1.5;
         }
       }
     }
@@ -108,27 +147,102 @@ function initParticleCanvas() {
     particles.push(new Particle());
   }
 
+  let lastScrollY = window.scrollY;
+
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    // Compute dynamic scroll ratio
     const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    const scrollRatio = Math.min(1, Math.max(0, window.scrollY / docHeight));
+    const scrollY = window.scrollY;
+    const scrollRatio = Math.min(1, Math.max(0, scrollY / docHeight));
 
-    // 1. Draw Deep Space Celestial Stars
+    // A. Cosmic Galaxy Nebula Clouds (Deep Space Ambience)
+    const galaxyAlpha = Math.max(0, 1 - scrollRatio * 1.2);
+    if (galaxyAlpha > 0.05) {
+      ctx.save();
+      ctx.globalAlpha = galaxyAlpha;
+
+      // Nebula 1: Deep Cyan / Teal
+      const neb1 = ctx.createRadialGradient(width * 0.8, height * 0.25, 40, width * 0.8, height * 0.25, width * 0.45);
+      neb1.addColorStop(0, 'rgba(0, 240, 255, 0.09)');
+      neb1.addColorStop(0.5, 'rgba(14, 116, 233, 0.04)');
+      neb1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = neb1;
+      ctx.fillRect(0, 0, width, height);
+
+      // Nebula 2: Deep Violet / Cosmic Magenta
+      const neb2 = ctx.createRadialGradient(width * 0.15, height * 0.45, 50, width * 0.15, height * 0.45, width * 0.5);
+      neb2.addColorStop(0, 'rgba(168, 85, 247, 0.08)');
+      neb2.addColorStop(0.6, 'rgba(236, 72, 153, 0.03)');
+      neb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = neb2;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.restore();
+    }
+
+    // B. Twinkling Celestial Stars with Parallax Shift
+    const scrollDelta = scrollY * 0.18;
     stars.forEach((star) => {
       star.phase += star.twinkleSpeed;
-      const alpha = star.baseAlpha * (0.6 + 0.4 * Math.sin(star.phase));
+      const alpha = star.baseAlpha * (0.55 + 0.45 * Math.sin(star.phase));
+
+      // Parallax wrap
+      let drawY = (star.baseY - scrollDelta * star.speedZ) % height;
+      if (drawY < 0) drawY += height;
+
       ctx.save();
       ctx.globalAlpha = alpha;
       ctx.fillStyle = star.color;
       ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.arc(star.x, drawY, star.radius, 0, Math.PI * 2);
       ctx.fill();
+
+      // Subtle flare for brightest stars
+      if (star.radius > 2.0) {
+        ctx.strokeStyle = star.color;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(star.x - star.radius * 2, drawY);
+        ctx.lineTo(star.x + star.radius * 2, drawY);
+        ctx.moveTo(star.x, drawY - star.radius * 2);
+        ctx.lineTo(star.x, drawY + star.radius * 2);
+        ctx.stroke();
+      }
       ctx.restore();
     });
 
-    // 2. Draw Interactive Constellation Net
+    // C. Shooting Stars Animation
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      s.life++;
+      s.x += Math.cos(s.angle) * s.speed;
+      s.y += Math.sin(s.angle) * s.speed;
+      s.alpha = Math.max(0, 1 - (s.life / s.maxLife));
+
+      const tailX = s.x - Math.cos(s.angle) * s.length;
+      const tailY = s.y - Math.sin(s.angle) * s.length;
+
+      ctx.save();
+      const grad = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+      grad.addColorStop(0.7, `rgba(0, 240, 255, ${0.4 * s.alpha})`);
+      grad.addColorStop(1, `rgba(255, 255, 255, ${s.alpha})`);
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(s.x, s.y);
+      ctx.stroke();
+      ctx.restore();
+
+      if (s.life >= s.maxLife) {
+        shootingStars.splice(i, 1);
+      }
+    }
+
+    // D. Foreground Constellation Net (Gently responsive to mouse)
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -136,12 +250,12 @@ function initParticleCanvas() {
         const dist = Math.hypot(dx, dy);
 
         if (dist < maxDistance) {
-          const alpha = (1 - dist / maxDistance) * 0.14;
+          const alpha = (1 - dist / maxDistance) * 0.12;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
-          ctx.lineWidth = 0.7;
+          ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }
@@ -152,34 +266,67 @@ function initParticleCanvas() {
       p.draw();
     });
 
-    // 3. LANDING ON EARTH: Dynamic Orbital Atmosphere & Curvature (When scrolling toward contact)
-    if (scrollRatio > 0.65) {
-      const landingProgress = (scrollRatio - 0.65) / 0.35; // 0 to 1 as we reach footer
-      const horizonY = height - (landingProgress * 140 - 20);
+    // E. LANDING ON EARTH: Majestic Atmospheric Glow & Planet Curvature (When approaching Contact)
+    if (scrollRatio > 0.55) {
+      const landingProgress = Math.min(1, (scrollRatio - 0.55) / 0.40);
+      const earthCenterX = width / 2;
+      const earthCenterY = height + (340 - landingProgress * 220); // Earth rises into view
+      const earthRadiusX = width * 0.85;
+      const earthRadiusY = 320;
 
       ctx.save();
 
-      // Atmospheric Blue Glow Gradient
+      // 1. Vast Atmospheric Glow Dome (Rayleigh scattering)
       const atmosGrad = ctx.createRadialGradient(
-        width / 2, height + 350, 200,
-        width / 2, height + 350, width * 0.85
+        earthCenterX, earthCenterY, earthRadiusY * 0.5,
+        earthCenterX, earthCenterY, earthRadiusX * 1.15
       );
-      atmosGrad.addColorStop(0, `rgba(5, 20, 58, ${0.85 * landingProgress})`);
-      atmosGrad.addColorStop(0.4, `rgba(14, 116, 233, ${0.35 * landingProgress})`);
-      atmosGrad.addColorStop(0.7, `rgba(0, 240, 255, ${0.15 * landingProgress})`);
+      atmosGrad.addColorStop(0, `rgba(6, 30, 85, ${0.90 * landingProgress})`);
+      atmosGrad.addColorStop(0.35, `rgba(14, 116, 233, ${0.45 * landingProgress})`);
+      atmosGrad.addColorStop(0.65, `rgba(0, 240, 255, ${0.25 * landingProgress})`);
+      atmosGrad.addColorStop(0.9, `rgba(59, 130, 246, ${0.08 * landingProgress})`);
       atmosGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       ctx.fillStyle = atmosGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // Earth Horizon Rim Curve
+      // 2. Earth Planet Silhouette (Curved dark surface)
       ctx.beginPath();
-      ctx.ellipse(width / 2, height + 240, width * 0.75, 300, 0, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(0, 240, 255, ${0.45 * landingProgress})`;
-      ctx.lineWidth = 2.5;
+      ctx.ellipse(earthCenterX, earthCenterY, earthRadiusX, earthRadiusY, 0, 0, Math.PI * 2);
+      ctx.fillStyle = '#01030b';
+      ctx.fill();
+
+      // 3. Glowing Atmospheric Rim Curve (Electric Cyan / Horizon Light)
+      ctx.beginPath();
+      ctx.ellipse(earthCenterX, earthCenterY, earthRadiusX, earthRadiusY, 0, Math.PI * 1.05, Math.PI * 1.95);
+      ctx.strokeStyle = `rgba(0, 240, 255, ${0.85 * landingProgress})`;
+      ctx.lineWidth = 3.5;
       ctx.shadowColor = '#00f0ff';
-      ctx.shadowBlur = 25 * landingProgress;
+      ctx.shadowBlur = 30 * landingProgress;
       ctx.stroke();
+
+      // Secondary soft outer rim
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = `rgba(59, 130, 246, ${0.35 * landingProgress})`;
+      ctx.shadowBlur = 45 * landingProgress;
+      ctx.stroke();
+
+      // 4. Golden City Lights on Earth's Night Side
+      cityLights.forEach((city) => {
+        city.phase += city.twinkleSpeed;
+        const alpha = city.baseAlpha * (0.6 + 0.4 * Math.sin(city.phase)) * landingProgress;
+        
+        // Position along the curved Earth surface
+        const cityX = earthCenterX + city.angleOffset * (earthRadiusX * 0.7);
+        const cityY = earthCenterY - Math.sqrt(Math.max(0, 1 - Math.pow((cityX - earthCenterX) / earthRadiusX, 2))) * (earthRadiusY * 0.85) + city.yOffset;
+
+        ctx.beginPath();
+        ctx.arc(cityX, cityY, city.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(253, 224, 71, ${alpha})`;
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 8 * alpha;
+        ctx.fill();
+      });
 
       ctx.restore();
     }
