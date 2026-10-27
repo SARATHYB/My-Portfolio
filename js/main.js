@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGalleryLightbox();
   initContactActions();
   initMobileNav();
+  initHeroAvatarReactor();
 });
 
 /* ==========================================================================
@@ -975,7 +976,7 @@ function initGalleryCarousels() {
     const trackWrapper = block.querySelector('.carousel-track-wrapper');
     const prevBtn = block.querySelector('.carousel-btn.prev');
     const nextBtn = block.querySelector('.carousel-btn.next');
-    const dots = Array.from(block.querySelectorAll('.carousel-dot'));
+    const dotsContainer = block.querySelector('.carousel-dots-row');
     const cards = Array.from(block.querySelectorAll('.gallery-card'));
 
     if (!trackWrapper || cards.length === 0) return;
@@ -983,86 +984,125 @@ function initGalleryCarousels() {
     let currentIndex = 0;
     const total = cards.length;
 
-    function scrollToCard(idx, smooth = true) {
-      if (idx < 0) idx = total - 1;
-      if (idx >= total) idx = 0;
-      currentIndex = idx;
-
-      const card = cards[currentIndex];
-      if (!card) return;
-
-      const targetScroll = card.offsetLeft - (trackWrapper.clientWidth - card.clientWidth) / 2;
-      trackWrapper.scrollTo({
-        left: Math.max(0, targetScroll),
-        behavior: smooth ? 'smooth' : 'auto'
+    function renderDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      cards.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('role', 'button');
+        dot.setAttribute('tabindex', '0');
+        dot.setAttribute('aria-label', `Show photo ${idx + 1} of ${total}`);
+        dot.addEventListener('click', () => showCard(idx));
+        dot.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            showCard(idx);
+          }
+        });
+        dotsContainer.appendChild(dot);
       });
-
-      updateDots();
     }
 
-    function updateDots() {
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
+    function updateCarousel() {
+      cards.forEach((card, idx) => {
+        let distance = idx - currentIndex;
+        if (distance > total / 2) distance -= total;
+        if (distance < -total / 2) distance += total;
+
+        card.classList.remove('is-active', 'is-prev', 'is-next', 'is-hidden');
+        if (distance === 0) {
+          card.classList.add('is-active');
+          card.setAttribute('aria-hidden', 'false');
+          card.tabIndex = 0;
+        } else if (distance === -1) {
+          card.classList.add('is-prev');
+          card.setAttribute('aria-hidden', 'false');
+          card.tabIndex = 0;
+        } else if (distance === 1) {
+          card.classList.add('is-next');
+          card.setAttribute('aria-hidden', 'false');
+          card.tabIndex = 0;
+        } else {
+          card.classList.add('is-hidden');
+          card.setAttribute('aria-hidden', 'true');
+          card.tabIndex = -1;
+        }
       });
+
+      if (dotsContainer) {
+        Array.from(dotsContainer.children).forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === currentIndex);
+          dot.setAttribute('aria-current', idx === currentIndex ? 'true' : 'false');
+        });
+      }
+    }
+
+    function showCard(idx) {
+      currentIndex = (idx + total) % total;
+      updateCarousel();
     }
 
     // Infinite loop next / prev
     if (prevBtn) {
       prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        scrollToCard(currentIndex - 1);
+        showCard(currentIndex - 1);
       });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        scrollToCard(currentIndex + 1);
+        showCard(currentIndex + 1);
       });
     }
 
-    // Dots click without full page jump
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToCard(idx);
+    cards.forEach((card) => {
+      card.addEventListener('click', (event) => {
+        if (card.classList.contains('is-prev')) {
+          event.stopImmediatePropagation();
+          showCard(currentIndex - 1);
+        } else if (card.classList.contains('is-next')) {
+          event.stopImmediatePropagation();
+          showCard(currentIndex + 1);
+        }
       });
     });
 
-    // Real-time synchronization as the user scrolls
-    trackWrapper.addEventListener('scroll', () => {
-      const center = trackWrapper.scrollLeft + trackWrapper.clientWidth / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
+    let touchX = 0;
+    trackWrapper.addEventListener('touchstart', (event) => {
+      touchX = event.changedTouches[0].screenX;
+    }, { passive: true });
 
-      cards.forEach((card, idx) => {
-        const cardCenter = card.offsetLeft + card.clientWidth / 2;
-        const dist = Math.abs(center - cardCenter);
-        if (dist < minDistance) {
-          minDistance = dist;
-          closestIdx = idx;
+    trackWrapper.addEventListener('touchend', (event) => {
+      const difference = event.changedTouches[0].screenX - touchX;
+      if (Math.abs(difference) > 40) {
+        showCard(currentIndex + (difference < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+
+    cards.forEach((card) => {
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', card.querySelector('.gallery-img')?.alt || 'Gallery photo');
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          showCard(currentIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          showCard(currentIndex + 1);
+        } else if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          if (card.classList.contains('is-prev')) showCard(currentIndex - 1);
+          else if (card.classList.contains('is-next')) showCard(currentIndex + 1);
+          else card.click();
         }
       });
+    });
 
-      if (closestIdx !== currentIndex) {
-        currentIndex = closestIdx;
-        updateDots();
-      }
-    }, { passive: true });
-
-    // Touch swipe support
-    let touchX = 0;
-    trackWrapper.addEventListener('touchstart', (e) => {
-      touchX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    trackWrapper.addEventListener('touchend', (e) => {
-      const diff = e.changedTouches[0].screenX - touchX;
-      if (Math.abs(diff) > 40) {
-        if (diff < 0) scrollToCard(currentIndex + 1);
-        else scrollToCard(currentIndex - 1);
-      }
-    }, { passive: true });
+    renderDots();
+    updateCarousel();
   });
 }
 
@@ -1074,8 +1114,6 @@ function initGalleryLightbox() {
   if (!modal) return;
 
   const lightboxImg = modal.querySelector('.lightbox-img');
-  const lightboxTitle = modal.querySelector('.lightbox-caption-title');
-  const lightboxSub = modal.querySelector('.lightbox-caption-sub');
   const closeBtn = modal.querySelector('.lightbox-close-btn');
   const prevBtn = modal.querySelector('.lightbox-prev-btn');
   const nextBtn = modal.querySelector('.lightbox-next-btn');
@@ -1100,9 +1138,7 @@ function initGalleryLightbox() {
     if (!currentItems[currentIndex]) return;
     const item = currentItems[currentIndex];
     lightboxImg.src = item.src;
-    lightboxImg.alt = item.title;
-    lightboxTitle.textContent = item.title;
-    lightboxSub.textContent = item.subtitle;
+    lightboxImg.alt = item.alt;
   }
 
   function showNext() {
@@ -1119,11 +1155,11 @@ function initGalleryLightbox() {
   document.querySelectorAll('.gallery-card').forEach((card) => {
     card.addEventListener('click', () => {
       const parentBlock = card.closest('.gallery-carousel-block');
+      if (!card.classList.contains('is-active')) return;
       const cardsInBlock = Array.from(parentBlock.querySelectorAll('.gallery-card'));
       const items = cardsInBlock.map((c) => ({
         src: c.querySelector('.gallery-img')?.getAttribute('src') || '',
-        title: c.querySelector('.gallery-caption')?.textContent || 'Gallery Photo',
-        subtitle: c.querySelector('.gallery-subtext')?.textContent || ''
+        alt: c.querySelector('.gallery-img')?.alt || 'Gallery photo'
       }));
 
       const clickedIndex = cardsInBlock.indexOf(card);
@@ -1203,5 +1239,21 @@ function initMobileNav() {
     if (!drawer.contains(e.target) && !toggleBtn.contains(e.target) && drawer.classList.contains('open')) {
       drawer.classList.remove('open');
     }
+  });
+}
+
+function initHeroAvatarReactor() {
+  const avatar = document.querySelector('.hero-avatar-ring');
+  if (!avatar) return;
+
+  let resetTimer;
+  avatar.addEventListener('click', () => {
+    window.clearTimeout(resetTimer);
+    avatar.classList.add('is-reactor');
+    avatar.setAttribute('aria-pressed', 'true');
+    resetTimer = window.setTimeout(() => {
+      avatar.classList.remove('is-reactor');
+      avatar.setAttribute('aria-pressed', 'false');
+    }, 2200);
   });
 }
