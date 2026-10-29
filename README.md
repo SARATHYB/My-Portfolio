@@ -43,8 +43,8 @@ This portfolio is crafted with **Apple Keynote scrollytelling**, ultra-fluid res
   - [API-Adolescent-Healthcare](https://github.com/SARATHYB/API-Adolescent-Healtcare) — Scalable clinical tracking REST API.
   - [Local-Market-Hub](https://github.com/SARATHYB/Local-Market-Hub) — Community e-commerce platform.
 - **📸 Visual Chronicles (Dual Photo Carousels & Lightbox)**:
-  - Solo Moments & Journeys (10 high-resolution captures).
-  - Squad, Riviera '26 & NSS Memories (8 team & event captures).
+  - Solo Moments & Journeys (13 high-resolution captures).
+  - Squad, Riviera '26 & NSS Memories (15 team & event captures).
   - Touch-swipe support, dot indicators, and full-screen image lightbox viewer.
 - **🎬 Inspirations & Pop Culture Bento**:
   - Guiding Inspirations: Dr. A.P.J. Abdul Kalam, Tony Stark, Elon Musk & every hard-working grinder.
