@@ -19,6 +19,14 @@
 }
 
 @font-face {
+  font-family: "StarCrush";
+  src: url("../assets/fonts/star-crush/Star Crush.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "HomeVideo";
   src: url("../assets/fonts/home-video/HomeVideo-Regular.otf") format("opentype");
   font-style: normal;
@@ -786,7 +794,7 @@ letter-spacing: 0.02em;
 
 /* Title Centered in Single Line */
 .hero-title-centered {
-  font-family: var(--font-display);
+  font-family: "StarCrush", var(--font-sans);
   font-size: clamp(2.4rem, 5.2vw, 4.4rem);
   font-weight: 400;
   white-space: nowrap;
@@ -795,9 +803,22 @@ letter-spacing: 0.02em;
   margin: 6px 0;
 }
 
+.hero-title-centered .arcade-classic {
+  font-family: inherit;
+  font-size: 1em;
+  vertical-align: baseline;
+  color: #f5fbff;
+  -webkit-text-fill-color: #f5fbff;
+}
+
 .hero-title-centered .gradient-cyan {
-  font-size: 0.72em;
-  vertical-align: 0.03em;
+  font-family: inherit;
+  font-size: 1em;
+  vertical-align: baseline;
+  background: linear-gradient(180deg, #f8fbff 0%, #55e8ff 55%, #8a7cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-type-cursor {
@@ -1980,6 +2001,7 @@ section {
 .jarvis-hud-overlay {
   position: fixed;
   inset: 0;
+  padding: 16px;
   background: rgba(4, 7, 14, 0.92);
   backdrop-filter: blur(25px);
   z-index: 10000;
@@ -1998,6 +2020,10 @@ section {
 .jarvis-hud-modal {
   width: 90%;
   max-width: 680px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: rgba(11, 19, 38, 0.85);
   border: 1px solid var(--accent-cyan);
   box-shadow: 0 0 60px rgba(0, 240, 255, 0.35);
@@ -2062,6 +2088,63 @@ section {
   color: var(--accent-cyan);
   margin-top: 20px;
   line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .jarvis-hud-overlay {
+    padding: 12px;
+  }
+
+  .jarvis-hud-modal {
+    width: 100%;
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    padding: 22px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .jarvis-hud-modal > .pill-badge {
+    max-width: calc(100% - 34px);
+    margin: 0 auto;
+    padding: 6px 10px;
+    font-size: 0.64rem;
+    line-height: 1.4;
+  }
+
+  .jarvis-close-btn {
+    top: 12px;
+    right: 12px;
+  }
+
+  .jarvis-hud-modal .arc-reactor-core {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 16px;
+  }
+
+  .jarvis-hud-modal h2 {
+    font-size: clamp(1.25rem, 6vw, 1.55rem) !important;
+    line-height: 1.25;
+  }
+
+  .jarvis-hud-modal > p {
+    font-size: 0.82rem !important;
+    line-height: 1.5;
+  }
+
+  .hud-terminal-log {
+    max-height: 24vh;
+    max-height: 24dvh;
+    overflow: auto;
+    padding: 10px;
+    font-size: 0.68rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .jarvis-hud-modal > div[style*="margin-top: 24px"] {
+    margin-top: 16px !important;
+  }
 }
 
 /* ==========================================================================
@@ -2330,10 +2413,6 @@ section {
 
   .hero-title-centered {
     font-size: clamp(1.8rem, 7vw, 2.6rem);
-  }
-
-  .hero-title-centered .gradient-cyan {
-    vertical-align: 0;
   }
 
   .hero-metrics-strip {
