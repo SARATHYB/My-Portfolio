@@ -46,6 +46,7 @@ This portfolio is crafted with **Apple Keynote scrollytelling**, ultra-fluid res
   - Solo Moments & Journeys (13 high-resolution captures).
   - Squad, Riviera '26 & NSS Memories (15 team & event captures).
   - Touch-swipe support, dot indicators, and full-screen image lightbox viewer.
+  - High-quality WebP is used where it meaningfully reduces image size; already-efficient photos remain unchanged.
 - **🎬 Inspirations & Pop Culture Bento**:
   - Guiding Inspirations: Dr. A.P.J. Abdul Kalam, Tony Stark, Elon Musk & every hard-working grinder.
   - Anime: *Attack on Titan (AOT)*, *Demon Slayer*, *Solo Leveling*.
@@ -68,7 +69,7 @@ My-Portfolio/
 ├── js/
 │   └── main.js          # Celestial-to-Earth canvas, scrollytelling engine, HUD, like button & carousels
 ├── assets/
-│   ├── Sarathy.jpeg     # High-resolution portrait
+│   ├── Sarathy.webp     # High-resolution portrait
 │   ├── Certificates/    # Official internship & leadership certificates (PDF/JPEG)
 │   ├── Solo/            # Solo journey photo captures
 │   └── Group/           # Squad, Riviera '26 & NSS photo captures

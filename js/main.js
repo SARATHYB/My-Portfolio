@@ -709,38 +709,28 @@ function initProjectsStackedCarousel() {
     const total = filteredCards.length;
     if (total === 0) return;
 
-    // Reset and hide all cards
     cards.forEach((card) => {
       card.className = 'project-stack-card is-hidden';
       card.style.display = 'none';
-      card.onclick = null;
     });
 
     filteredCards.forEach((card, idx) => {
-      card.style.display = 'flex';
-
       // Circular distance modulo
       let diff = idx - currentIndex;
       if (diff > total / 2) diff -= total;
       if (diff < -total / 2) diff += total;
 
+      if (Math.abs(diff) > 2) return;
+
+      card.style.display = 'flex';
       card.className = 'project-stack-card';
 
       if (diff === 0) {
         card.classList.add('is-active');
-        card.onclick = null;
       } else if (diff === 1) {
         card.classList.add('is-next');
-        card.onclick = () => {
-          currentIndex = (currentIndex + 1) % total;
-          updateCardStack();
-        };
       } else if (diff === -1) {
         card.classList.add('is-prev');
-        card.onclick = () => {
-          currentIndex = (currentIndex - 1 + total) % total;
-          updateCardStack();
-        };
       } else if (diff === 2) {
         card.classList.add('is-far-next');
       } else if (diff === -2) {
@@ -768,6 +758,14 @@ function initProjectsStackedCarousel() {
     currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
     updateCardStack();
   }
+
+  cards.forEach((card) => {
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a, button')) return;
+      if (card.classList.contains('is-next')) nextCard();
+      else if (card.classList.contains('is-prev')) prevCard();
+    });
+  });
 
   if (nextBtn) nextBtn.addEventListener('click', nextCard);
   if (prevBtn) prevBtn.addEventListener('click', prevCard);
