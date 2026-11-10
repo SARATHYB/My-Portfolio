@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactActions();
   initMobileNav();
   initHeroAvatarReactor();
+  initHeroTitleTyping();
 });
 
 /* ==========================================================================
@@ -892,18 +893,6 @@ function initJarvisHUD() {
    ========================================================================== */
 function initLikeButtons() {
   const likeButtons = document.querySelectorAll('.like-trigger-btn');
-  const likeCounters = document.querySelectorAll('.like-count-num');
-  
-  const STORAGE_KEY = 'sarathy_portfolio_likes';
-  let likes = parseInt(localStorage.getItem(STORAGE_KEY), 10) || 142;
-
-  function updateCounters() {
-    likeCounters.forEach((el) => {
-      el.textContent = likes.toLocaleString();
-    });
-  }
-
-  updateCounters();
 
   function triggerHeartConfetti(e) {
     const count = 7;
@@ -931,15 +920,12 @@ function initLikeButtons() {
 
   likeButtons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-      likes++;
-      localStorage.setItem(STORAGE_KEY, likes);
-      updateCounters();
       btn.classList.add('liked');
       triggerHeartConfetti(e);
 
       const toast = document.getElementById('toast-notification');
       if (toast) {
-        toast.textContent = `Thank you for the love! ❤️ (${likes} Likes)`;
+        toast.textContent = 'Thanks for the love! ❤️';
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 2500);
       }
@@ -1200,17 +1186,24 @@ function initContactActions() {
 
   const contactForm = document.getElementById('quick-contact-form');
   if (contactForm) {
+    const emailFallback = document.getElementById('contact-email-fallback');
+    const emailDraftLink = document.getElementById('contact-email-draft-link');
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('sender-name')?.value || 'Peer';
       const email = document.getElementById('sender-email')?.value || '';
       const message = document.getElementById('sender-msg')?.value || '';
 
-      const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-      const body = encodeURIComponent(`Hi Sarathy,\n\n${message}\n\nFrom: ${name} (${email})`);
-      window.location.href = `mailto:bsarathy303@gmail.com?subject=${subject}&body=${body}`;
+      if (!emailFallback || !(emailDraftLink instanceof HTMLAnchorElement)) {
+        throw new Error('Unable to prepare the contact email draft.');
+      }
 
-      showToast('Opening default email client...');
+      const emailDraft = `mailto:bsarathy303@gmail.com?subject=${encodeURIComponent(message)}&body=${encodeURIComponent(`Hi Sarathy,\n\n${message}\n\nFrom: ${name} (${email})`)}`;
+      emailDraftLink.href = emailDraft;
+      emailFallback.hidden = false;
+      emailDraftLink.click();
+      showToast('If your email app did not open, use the email draft link below.');
     });
   }
 }
@@ -1247,13 +1240,65 @@ function initHeroAvatarReactor() {
   if (!avatar) return;
 
   let resetTimer;
+  const setReactorActive = (active) => {
+    avatar.classList.toggle('is-reactor', active);
+    avatar.setAttribute('aria-pressed', String(active));
+    avatar.setAttribute('aria-label', active ? 'Arc Reactor effect playing' : 'Show Arc Reactor effect');
+  };
+  const showPhoto = () => setReactorActive(false);
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    showPhoto();
+  } else {
+    resetTimer = window.setTimeout(showPhoto, 1400);
+  }
+
   avatar.addEventListener('click', () => {
     window.clearTimeout(resetTimer);
-    avatar.classList.add('is-reactor');
-    avatar.setAttribute('aria-pressed', 'true');
+    setReactorActive(true);
     resetTimer = window.setTimeout(() => {
-      avatar.classList.remove('is-reactor');
-      avatar.setAttribute('aria-pressed', 'false');
+      showPhoto();
     }, 2200);
   });
+}
+
+function initHeroTitleTyping() {
+  const title = document.querySelector('.hero-title-centered');
+  const firstName = title?.querySelector('.arcade-classic');
+  const lastName = title?.querySelector('.gradient-cyan');
+  if (!title || !firstName || !lastName) return;
+
+  const firstText = firstName.textContent || '';
+  const lastText = lastName.textContent || '';
+  const cursor = document.createElement('span');
+  cursor.className = 'hero-type-cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  cursor.textContent = '|';
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    lastName.append(cursor);
+    return;
+  }
+
+  firstName.textContent = '';
+  lastName.textContent = '';
+  firstName.append(cursor);
+
+  const typeText = (element, text, index, done) => {
+    if (index >= text.length) {
+      done();
+      return;
+    }
+
+    element.insertBefore(document.createTextNode(text[index]), cursor);
+    window.setTimeout(() => typeText(element, text, index + 1, done), 75);
+  };
+
+  window.setTimeout(() => {
+    typeText(firstName, firstText, 0, () => {
+      lastName.append(cursor);
+      typeText(lastName, lastText, 0, () => {});
+    });
+  }, 350);
 }

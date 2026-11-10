@@ -43,7 +43,7 @@
   <header class="navbar">
     <a href="#hero" class="nav-brand">
       <div class="nav-logo-badge">SB</div>
-      <div class="nav-brand-text">Sarathy <span>Bhaskaran</span></div>
+      <div class="nav-brand-text"><span class="arcade-classic">Sarathy</span> <span>Bhaskaran</span></div>
     </a>
 
     <ul class="nav-links">
@@ -59,13 +59,10 @@
     </ul>
 
     <div class="nav-actions">
-      <!-- Interactive Like Counter in Ribbon -->
-      <button type="button" class="btn-nav-like like-trigger-btn" title="Love this portfolio? Hit Like!">
-        <svg class="like-heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <button type="button" class="btn-nav-like like-trigger-btn" aria-label="Like this portfolio" title="Like this portfolio">
+        <svg class="like-heart-icon" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
-        <span>Like</span>
-        <span class="like-count-num">142</span>
       </button>
 
       <button type="button" class="btn-easter-egg trigger-jarvis-hud" title="Launch Jarvis Arc Reactor HUD">
@@ -102,11 +99,11 @@
         
         <!-- Photo Centered on Top (No floating bubbles, spacious and clean) -->
         <div class="hero-avatar-center reveal">
-          <button type="button" class="hero-avatar-ring" aria-label="Show Arc Reactor effect" aria-pressed="false">
+          <button type="button" class="hero-avatar-ring is-reactor" aria-label="Arc Reactor effect playing" aria-pressed="true">
             <div class="hero-avatar-inner">
               <img src="assets/Sarathy.jpeg" alt="Sarathy Bhaskaran - AI & Data Science Engineer" />
             </div>
-            <div class="hero-avatar-glow"></div>
+            <span class="hero-avatar-glow" aria-hidden="true"></span>
             <span class="hero-avatar-reactor" aria-hidden="true">
               <span class="hero-avatar-reactor-core">
                 <span class="hero-avatar-reactor-inner"></span>
@@ -124,8 +121,8 @@
         </div>
 
         <!-- Full Name in a Single Line (No wrapping) -->
-        <h1 class="hero-title hero-title-centered reveal reveal-delay-1">
-          Sarathy <span class="gradient-cyan">Bhaskaran</span>
+        <h1 class="hero-title hero-title-centered reveal reveal-delay-1" aria-label="Sarathy Bhaskaran">
+          <span class="arcade-classic">Sarathy</span> <span class="gradient-cyan">Bhaskaran</span>
         </h1>
 
         <p class="hero-role-subtitle reveal reveal-delay-2">
@@ -1371,315 +1368,28 @@
     </section>
 
     <!-- ==========================================================================
-         INSPIRATIONS, ANIME, CINEMA & SOUNDTRACKS (POP CULTURE BENTO)
+         COSMIC INSPIRATION NETWORK
          ========================================================================== -->
     <section id="passions">
       <div class="container">
         <div class="section-header reveal">
           <div class="section-tag">// WHAT DRIVES THE ENGINE</div>
-          <h2 class="section-title">Inspirations, Pop-Culture & The Wanderlust Dream</h2>
-          <p class="section-description">
-            The role models, anime determination, cinematic storytelling, and anthems fueling the late-night coding sessions.
-          </p>
+          <h2 class="section-title">Inspirations, Pop-Culture &amp; The Wanderlust Dream</h2>
         </div>
 
-        <div class="inspiration-bento">
-
-          <!-- 1. Inspirations: Abdul Kalam, Tony Stark / Elon Musk, Hard Workers -->
-          <div class="inspiration-card interactive-card reveal">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Guiding Inspirations</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Mindset & Purpose</span>
-              </div>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="font-weight: 600; color: #fff; font-size: 0.92rem;">Dr. A.P.J. Abdul Kalam</div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 2px;">
-                Unflinching humility, relentless vision for the youth, and proving that hard work can take anyone from a small town to the highest echelons.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="font-weight: 600; color: #fff; font-size: 0.92rem;">Tony Stark & Elon Musk</div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 2px;">
-                Engineering at extreme scale with a bold, uncompromising vision dedicated to the advancement and betterment of humanity.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="font-weight: 600; color: #fff; font-size: 0.92rem;">Every Relentless Hard Worker</div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 2px;">
-                Pure respect for everyone who grinds day in and day out without complaints, showing up with heart every single morning.
-              </p>
-            </div>
+        <div class="cosmic-network" role="group" aria-label="Interactive inspiration network">
+          <canvas id="cosmic-network-canvas" class="cosmic-network-canvas" tabindex="0" role="application" aria-label="Interactive inspiration network. Hover, tap, or use arrow keys to explore stars."></canvas>
+          <div class="cosmic-network-hint" aria-hidden="true">HOVER · TAP · CLICK<br />USE ARROW KEYS TO EXPLORE</div>
+          <aside class="cosmic-network-detail" id="cosmic-network-detail" aria-live="polite" aria-atomic="true" hidden>
+            <small id="cosmic-network-type"></small>
+            <strong id="cosmic-network-name"></strong>
+            <p id="cosmic-network-description"></p>
+          </aside>
+          <div class="cosmic-network-legend" aria-label="Graph legend">
+            <span><i class="cosmic-legend-dot cosmic-legend-core"></i>Core</span>
+            <span><i class="cosmic-legend-dot cosmic-legend-category"></i>Categories</span>
+            <span><i class="cosmic-legend-dot cosmic-legend-interest"></i>Interests</span>
           </div>
-
-          <!-- 2. Anime: AOT, Demon Slayer, Solo Leveling -->
-          <div class="inspiration-card interactive-card reveal reveal-delay-1">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #f43f5e; border-color: rgba(244, 63, 94, 0.3);">
-                <!-- Sword / Flame SVG -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Anime Universe</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Unbreakable Willpower</span>
-              </div>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Attack on Titan (AOT)</span>
-                <span class="media-pill-tag anime-tag">Freedom</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                "Fight. If you don't fight, you can't win." The relentless, uncompromising battle against all impossible odds.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Demon Slayer</span>
-                <span class="media-pill-tag anime-tag">Discipline</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                Tanjiro's sheer purity of heart, unbreakable family bond, and rigorous total-concentration breathing discipline.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Solo Leveling</span>
-                <span class="media-pill-tag anime-tag">Daily Grind</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                "I alone level up." Starting from the absolute weakest E-rank and relentlessly outworking the entire universe.
-              </p>
-            </div>
-          </div>
-
-          <!-- 3. Hollywood Movies: Cars, Pursuit of Happyness, Matrix, Back to the Future -->
-          <div class="inspiration-card interactive-card reveal reveal-delay-2">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">
-                <!-- Film Reel SVG -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Cinema & Stories</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Grit, Heart & Vision</span>
-              </div>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Cars</span>
-                <span class="media-pill-tag movie-tag">Humility & Passion</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                Lightning McQueen discovering that genuine triumph isn't just winning a trophy. It's honoring friends and mentors on the track.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">The Pursuit of Happyness</span>
-                <span class="media-pill-tag movie-tag">Perseverance</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                "Don't ever let somebody tell you you can't do something." Chris Gardner's raw tears of victory after unimaginable struggle.
-              </p>
-            </div>
-
-            <div class="inspiration-item">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">The Matrix & Back to the Future</span>
-                <span class="media-pill-tag movie-tag">Futurism</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
-                Peeling back the computational fabric of reality, paired with nostalgic 80s retro-futuristic DeLorean imagination.
-              </p>
-            </div>
-          </div>
-
-          <!-- 4. Heavy Rotation Songs: Infinity & Forever Young -->
-          <div class="inspiration-card interactive-card reveal">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #c084fc; border-color: rgba(192, 132, 252, 0.3);">
-                <!-- Music Headphones SVG -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Heavy Rotation Songs</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Midnight Coding Anthems</span>
-              </div>
-            </div>
-
-            <div class="inspiration-item" style="border-left: 3px solid #c084fc;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Skyfall by Adele</span>
-                <span class="media-pill-tag song-tag">On Repeat</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px; font-style: italic;">
-                "You may have my number, you can take my name. But you will never have my heart. Let the sky fall..." 
-              </p>
-            </div>
-
-            <div class="inspiration-item" style="border-left: 3px solid #38bdf8;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 700; color: #fff;">Forever Young by Alphaville</span>
-                <span class="media-pill-tag song-tag">Timeless</span>
-              </div>
-              <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px; font-style: italic;">
-                "Hoping for the best, but expecting the worst. Are you gonna drop the bomb or not?"
-              </p>
-            </div>
-
-            <p style="color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; margin-top: 6px;">
-              The exact tracks looped during 3:00 AM machine learning training runs, patent writing, and between submitting assessments.
-          </div>
-
-          <!-- 5. Thalapathy Vijay -->
-          <div class="inspiration-card interactive-card reveal reveal-delay-1">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">
-                <!-- Crown / Fire SVG -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"></path></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Thalapathy Vijay</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Inspiration & Motivation</span>
-              </div>
-            </div>
-
-            <p class="interest-quote" style="border-left: 2px solid #fbbf24; padding-left: 10px; color: var(--text-main); font-size: 0.88rem; font-style: italic;">
-              "Kill them with your Smile, bury them with your Success."
-            </p>
-
-            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
-              Inspired by Hon. CM Thalapathy Vijay's unmatched discipline, simplicity, and raw electric charisma. When I am not pretty up, you'll find me motivating myself by listening to his speeches, binge watching his movies, or listening to his energetic songs.
-            </p>
-
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;">
-              <span class="pill-badge" style="font-size: 0.78rem;">Ghilli · Master · Leo</span>
-              <span class="pill-badge" style="font-size: 0.78rem;">All is well.</span>
-            </div>
-          </div>
-
-          <!-- 6. Stark Jarvis HUD Callout -->
-          <div class="inspiration-card interactive-card reveal reveal-delay-2" style="background: radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.12), transparent 50%), var(--bg-card); border-color: rgba(239, 68, 68, 0.3);">
-            <div class="inspiration-header">
-              <div class="inspiration-icon" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.35);">
-                <!-- Arc Reactor Core SVG -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line></svg>
-              </div>
-              <div>
-                <h3 style="font-size: 1.15rem; font-weight: 700;">Easter Egg</h3>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">Ha you got it!</span>
-              </div>
-            </div>
-
-            <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
-              "Sometimes you gotta run before you can walk." Built custom AI integrations, voice telemetry, and the interactive Stark Arc Reactor HUD easter egg.
-            </p>
-
-            <button type="button" class="btn btn-secondary trigger-jarvis-hud" style="margin-top: auto; width: 100%; font-size: 0.85rem; border-color: rgba(239, 68, 68, 0.4); color: #fca5a5;">
-              <span>Initialize Jarvis HUD Modal</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            </button>
-          </div>
-
-          <!-- 7. The Ultimate Solo Expedition (Full Width) -->
-          <div class="inspiration-card interactive-card travel-card-full reveal">
-            <div class="travel-dream-container">
-              
-              <div class="travel-dream-text">
-                <div class="pill-badge" style="margin-bottom: 12px; border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.08); color: var(--accent-cyan);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path></svg>
-                  <span>The Bucket List Expedition</span>
-                </div>
-                <h3 class="gradient-text">"The one part of my life that my soul always wanted to cherish long before it perishes."</h3>
-                <p>
-                  Beyond screens and code, there's a burning wanderlust: packing light, mounting a bicycle or a backpack, and exploring every corner of India from the passes of Ladakh to the misty Western Ghats, and then taking off across the globe to the Swiss Alps, Tokyo neon corridors, and Nordic auroras.
-                </p>
-                <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px;">
-                  <span class="pill-badge">Self-Discovery</span>
-                  <span class="pill-badge">Solo Backpacking</span>
-                  <span class="pill-badge">Mountain Passes</span>
-                  <span class="pill-badge">World Explorer</span>
-                </div>
-              </div>
-
-              <div class="travel-pins-list">
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Leh Ladakh & Khardung La</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Himalayan High Altitude Pass</div>
-                  </div>
-                </div>
-
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Western Ghats & Coorg</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Misty Monsoon Trail Cycling</div>
-                  </div>
-                </div>
-
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Spiti Valley & Kaza</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Cold Desert Star-Gazing</div>
-                  </div>
-                </div>
-
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Kyoto & Tokyo, Japan</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Cyberpunk Tech Meets Shrines</div>
-                  </div>
-                </div>
-
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Swiss Alps & Zermatt</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Glacial Peaks & Serene Rails</div>
-                  </div>
-                </div>
-
-                <div class="travel-pin">
-                  <span class="pin-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  </span>
-                  <div>
-                    <div style="color: #fff; font-size: 0.88rem; font-weight: 600;">Icelandic Ring Road</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">Aurora Borealis & Geysers</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1906,7 +1616,7 @@
           
           <!-- Contact Direct Coordinates -->
           <div class="contact-card-box interactive-card reveal">
-            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 8px;">Direct Coordinates</h3>
+            <h3 style="font-size: 1.4rem; font-weight: 400; margin-bottom: 8px;">Direct Coordinates</h3>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;">
               Feel free to reach out directly through any of these communication channels.
             </p>
@@ -1964,7 +1674,7 @@
 
           <!-- Quick Message Form -->
           <div class="contact-card-box interactive-card reveal reveal-delay-1">
-            <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 8px;">Send a Direct Message</h3>
+            <h3 style="font-size: 1.4rem; font-weight: 400; margin-bottom: 8px;">Send a Direct Message</h3>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;">
               Fill in the details below to launch your email client with a pre-configured draft.
             </p>
@@ -1990,6 +1700,9 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             </form>
+            <p class="contact-email-fallback" id="contact-email-fallback" hidden>
+              If your email app didn't open, <a id="contact-email-draft-link">open the email draft here</a>.
+            </p>
           </div>
 
         </div>
@@ -2098,6 +1811,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/cosmic-network.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
