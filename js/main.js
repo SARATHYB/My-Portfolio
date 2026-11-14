@@ -232,6 +232,7 @@ function initParticleCanvas() {
 
     // C. Twinkling Celestial Background Stars with Parallax Shift
     const scrollDelta = scrollY * 0.18;
+    ctx.save();
     stars.forEach((star) => {
       star.phase += star.twinkleSpeed;
       const alpha = star.baseAlpha * (0.55 + 0.45 * Math.sin(star.phase));
@@ -256,8 +257,8 @@ function initParticleCanvas() {
         ctx.lineTo(star.x, drawY + star.radius * 2);
         ctx.stroke();
       }
-      ctx.restore();
     });
+    ctx.restore();
 
     // D. Shooting Stars Animation
     for (let i = shootingStars.length - 1; i >= 0; i--) {
@@ -675,6 +676,14 @@ function initProjectsStackedCarousel() {
   let activeFilter = 'all';
   let filteredCards = [...cards];
   let currentIndex = 0;
+  let visibleCards = new Set();
+  let activeDot = null;
+  const stackStates = ['is-hidden', 'is-active', 'is-next', 'is-prev', 'is-far-next', 'is-far-prev'];
+
+  cards.forEach((card) => {
+    card.classList.add('is-hidden');
+    card.style.display = 'none';
+  });
 
   function updateFilteredCards() {
     filteredCards = cards.filter((card) => {
@@ -703,16 +712,12 @@ function initProjectsStackedCarousel() {
       });
       dotsContainer.appendChild(dot);
     });
+    activeDot = dotsContainer.children[currentIndex] || null;
   }
 
   function updateCardStack() {
     const total = filteredCards.length;
-    if (total === 0) return;
-
-    cards.forEach((card) => {
-      card.className = 'project-stack-card is-hidden';
-      card.style.display = 'none';
-    });
+    const nextCardStates = new Map();
 
     filteredCards.forEach((card, idx) => {
       // Circular distance modulo
@@ -722,29 +727,43 @@ function initProjectsStackedCarousel() {
 
       if (Math.abs(diff) > 2) return;
 
-      card.style.display = 'flex';
-      card.className = 'project-stack-card';
-
+      let state = 'is-hidden';
       if (diff === 0) {
-        card.classList.add('is-active');
+        state = 'is-active';
       } else if (diff === 1) {
-        card.classList.add('is-next');
+        state = 'is-next';
       } else if (diff === -1) {
-        card.classList.add('is-prev');
+        state = 'is-prev';
       } else if (diff === 2) {
-        card.classList.add('is-far-next');
+        state = 'is-far-next';
       } else if (diff === -2) {
-        card.classList.add('is-far-prev');
-      } else {
-        card.classList.add('is-hidden');
+        state = 'is-far-prev';
       }
+      nextCardStates.set(card, state);
     });
 
-    // Update dots
-    const dots = dotsContainer ? dotsContainer.querySelectorAll('.stack-dot') : [];
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentIndex);
+    visibleCards.forEach((card) => {
+      if (nextCardStates.has(card)) return;
+      card.classList.remove(...stackStates);
+      card.classList.add('is-hidden');
+      card.style.display = 'none';
     });
+
+    nextCardStates.forEach((state, card) => {
+      if (!visibleCards.has(card)) {
+        card.style.display = 'flex';
+      }
+      card.classList.remove(...stackStates);
+      card.classList.add(state);
+    });
+    visibleCards = new Set(nextCardStates.keys());
+
+    const nextActiveDot = dotsContainer ? dotsContainer.children[currentIndex] : null;
+    if (activeDot !== nextActiveDot) {
+      activeDot?.classList.remove('active');
+      nextActiveDot?.classList.add('active');
+      activeDot = nextActiveDot;
+    }
   }
 
   function nextCard() {
@@ -1197,10 +1216,10 @@ function initContactActions() {
         throw new Error('Unable to prepare the contact email draft.');
       }
 
-      const emailDraft = `mailto:bsarathy303@gmail.com?subject=${encodeURIComponent(message)}&body=${encodeURIComponent(`Hi Sarathy,\n\n${message}\n\nFrom: ${name} (${email})`)}`;
+      const emailDraft = `mailto:bsarathy303@gmail.com?subject=${encodeURIComponent('Hey Sarathy, I would like to connect!')}&body=${encodeURIComponent(`Hi Sarathy,\n\n${message}\n\nFrom: ${name} (${email})`)}`;
       emailDraftLink.href = emailDraft;
       emailFallback.hidden = false;
-      emailDraftLink.click();
+      window.location.href = emailDraft;
       showToast('If your email app did not open, use the email draft link below.');
     });
   }

@@ -2878,7 +2878,7 @@ section {
 }
 
 /* ==========================================================================
-   PHOTO GALLERY CAROUSELS & LIGHTBOX (SOLO & SQUAD)
+   PHOTO GALLERY CAROUSELS & LIGHTBOX (SOLO, SQUAD & WALLPAPER)
    ========================================================================== */
 
 .gallery-section {
@@ -2888,6 +2888,7 @@ section {
 
 .gallery-nav-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
   margin-bottom: 36px;
@@ -2981,18 +2982,55 @@ section {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Group photos: Wide Landscape orientation to prevent cropped/enlarged heads */
+/* Group photos: Wide landscape photos with captions below */
 #carousel-group .gallery-card {
+  width: min(450px, 76vw);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#carousel-group .gallery-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  flex: none;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#carousel-wallpaper .gallery-card {
   width: min(450px, 76vw);
   height: 300px;
 }
 
-#carousel-group .gallery-img {
+#carousel-wallpaper .gallery-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 76px;
+  margin: 0;
+  padding: 12px 16px;
+  color: var(--text-main);
+  font-size: 0.88rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.gallery-subsection-description {
+  margin: 0 0 8px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 .gallery-card.is-active {
@@ -3296,7 +3334,7 @@ section {
   box-shadow: 0 0 9px currentColor;
 }
 
-.cosmic-legend-core { color: #72f0b0; background: #72f0b0; }
+.cosmic-legend-core { color: #72eaff; background: #72eaff; }
 .cosmic-legend-category { color: #76dcb1; background: #76dcb1; }
 .cosmic-legend-interest { color: #72aaff; background: #72aaff; }
 
@@ -3367,7 +3405,11 @@ section {
   #carousel-group .gallery-card {
     width: min(300px, 78vw);
     height: auto;
-    aspect-ratio: 3 / 2;
+  }
+
+  #carousel-wallpaper .gallery-card {
+    width: min(300px, 78vw);
+    height: 200px;
   }
 
   .carousel-btn {

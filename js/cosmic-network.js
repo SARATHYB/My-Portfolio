@@ -82,16 +82,16 @@ function initCosmicNetwork() {
   const links = [];
   const core = {
     id: 'core',
-    name: 'SARATHY B',
+    name: 'Arc Reactor',
     type: 'CORE',
-    desc: 'The center of this inspiration network.',
+    desc: 'The center of this inspiration network. - Love you 3000!',
     x: 0,
     y: 0,
     baseX: 0,
     baseY: 0,
     r: 27,
     phase: 0,
-    color: '#72f0b0'
+    color: '#72eaff'
   };
   nodes.push(core);
 
@@ -340,27 +340,31 @@ function initCosmicNetwork() {
       context.arc(nodeX, nodeY, radius * 2.8, 0, Math.PI * 2);
       context.fill();
 
-      context.beginPath();
-      context.arc(nodeX, nodeY, radius, 0, Math.PI * 2);
-      const fill = context.createRadialGradient(
-        nodeX - radius * 0.35,
-        nodeY - radius * 0.4,
-        1,
-        nodeX,
-        nodeY,
-        radius * 1.2
-      );
-      fill.addColorStop(0, '#ffffff');
-      fill.addColorStop(0.18, node.color);
-      fill.addColorStop(1, node.type === 'CORE' ? '#168f83' : '#254d94');
-      context.fillStyle = fill;
-      context.shadowBlur = isHighlighted ? 25 : 13;
-      context.shadowColor = node.color;
-      context.fill();
-      context.shadowBlur = 0;
-      context.lineWidth = 1.2;
-      context.strokeStyle = `${node.color}cc`;
-      context.stroke();
+      if (node.type === 'CORE') {
+        drawArcReactor(nodeX, nodeY, radius, elapsed, isHighlighted);
+      } else {
+        context.beginPath();
+        context.arc(nodeX, nodeY, radius, 0, Math.PI * 2);
+        const fill = context.createRadialGradient(
+          nodeX - radius * 0.35,
+          nodeY - radius * 0.4,
+          1,
+          nodeX,
+          nodeY,
+          radius * 1.2
+        );
+        fill.addColorStop(0, '#ffffff');
+        fill.addColorStop(0.18, node.color);
+        fill.addColorStop(1, '#254d94');
+        context.fillStyle = fill;
+        context.shadowBlur = isHighlighted ? 25 : 13;
+        context.shadowColor = node.color;
+        context.fill();
+        context.shadowBlur = 0;
+        context.lineWidth = 1.2;
+        context.strokeStyle = `${node.color}cc`;
+        context.stroke();
+      }
       context.globalAlpha = 1;
 
       if (node.type !== 'INTEREST' || focusedCategory) {
@@ -374,6 +378,91 @@ function initCosmicNetwork() {
       const nodeX = getScreenX(hovered, focusScale, mobile);
       const nodeY = getScreenY(hovered, focusScale, mobile);
       drawNodeLabel(hovered.name, nodeX, nodeY - 15, 12, Math.min(width - 28, 220));
+    }
+
+    function drawArcReactor(x, y, radius, elapsed, highlighted) {
+      context.save();
+      context.translate(x, y);
+
+      const pulse = 0.96 + Math.sin(elapsed * 2.4) * 0.035;
+      const reactorRadius = radius * pulse;
+      const rotation = elapsed * 0.24;
+
+      context.shadowColor = '#55eaff';
+      context.shadowBlur = highlighted ? 28 : 18;
+      context.beginPath();
+      context.arc(0, 0, reactorRadius, 0, Math.PI * 2);
+      context.fillStyle = '#06131e';
+      context.fill();
+      context.shadowBlur = 0;
+
+      const housing = context.createRadialGradient(-reactorRadius * 0.3, -reactorRadius * 0.35, 1, 0, 0, reactorRadius);
+      housing.addColorStop(0, '#dffcff');
+      housing.addColorStop(0.16, '#6feaff');
+      housing.addColorStop(0.42, '#187e9b');
+      housing.addColorStop(0.76, '#0b2637');
+      housing.addColorStop(1, '#07131f');
+      context.beginPath();
+      context.arc(0, 0, reactorRadius * 0.87, 0, Math.PI * 2);
+      context.fillStyle = housing;
+      context.fill();
+
+      context.strokeStyle = 'rgba(177, 248, 255, 0.92)';
+      context.lineWidth = Math.max(1, radius * 0.07);
+      context.beginPath();
+      context.arc(0, 0, reactorRadius * 0.92, 0, Math.PI * 2);
+      context.stroke();
+
+      context.strokeStyle = 'rgba(44, 222, 255, 0.88)';
+      context.lineWidth = Math.max(1, radius * 0.055);
+      context.beginPath();
+      context.arc(0, 0, reactorRadius * 0.69, rotation, rotation + Math.PI * 1.72);
+      context.stroke();
+
+      context.save();
+      context.rotate(rotation);
+      context.strokeStyle = 'rgba(207, 252, 255, 0.92)';
+      context.lineWidth = Math.max(1, radius * 0.065);
+      context.lineCap = 'round';
+      for (let spoke = 0; spoke < 8; spoke++) {
+        const angle = spoke * Math.PI / 4;
+        context.beginPath();
+        context.moveTo(Math.cos(angle) * reactorRadius * 0.73, Math.sin(angle) * reactorRadius * 0.73);
+        context.lineTo(Math.cos(angle) * reactorRadius * 0.84, Math.sin(angle) * reactorRadius * 0.84);
+        context.stroke();
+      }
+      context.restore();
+
+      const triangleRadius = reactorRadius * 0.48;
+      const triangleGlow = context.createRadialGradient(0, 0, 1, 0, 0, triangleRadius);
+      triangleGlow.addColorStop(0, '#ffffff');
+      triangleGlow.addColorStop(0.35, '#a8f8ff');
+      triangleGlow.addColorStop(1, '#10b9dc');
+      context.beginPath();
+      for (let point = 0; point < 3; point++) {
+        const angle = -Math.PI / 2 + point * (Math.PI * 2 / 3);
+        const pointX = Math.cos(angle) * triangleRadius;
+        const pointY = Math.sin(angle) * triangleRadius;
+        if (point === 0) context.moveTo(pointX, pointY);
+        else context.lineTo(pointX, pointY);
+      }
+      context.closePath();
+      context.fillStyle = triangleGlow;
+      context.shadowColor = '#6cf3ff';
+      context.shadowBlur = highlighted ? 22 : 14;
+      context.fill();
+      context.shadowBlur = 0;
+      context.strokeStyle = 'rgba(226, 255, 255, 0.95)';
+      context.lineWidth = Math.max(1, radius * 0.06);
+      context.stroke();
+
+      context.beginPath();
+      context.arc(0, 0, reactorRadius * 0.105, 0, Math.PI * 2);
+      context.fillStyle = '#ffffff';
+      context.shadowColor = '#ffffff';
+      context.shadowBlur = 10;
+      context.fill();
+      context.restore();
     }
 
     function drawNodeLabel(text, x, y, fontSize, maxWidth) {
